@@ -1,0 +1,11 @@
+
+\section{Interfaces, Responsibilities, PRR Deliverables}
+\begin{tabular}{@{}p{3cm}p{3.5cm}p{7.8cm}@{}}
+\toprule
+\textbf{Interface} & \textbf{Lead / Co‑lead} & \textbf{PRR Deliverable (Minimal)} \\\midrule
+Timing & DUNE Timing group & DAQ‑driven timing run with DAPHNE; stable sync over N hours; sub-tick alignment \\
+DAQ readout \& formats & DAQ / PDS & End‑to‑end decode of DAPHNE frames incl.\ peak descriptors; schema agreed \\
+Slow control & PDS / DAQ & Config‑generation path separated; new classes declared; audit log \\
+Calibration hooks & PDS / DAQ & Apply updated \texttt{tp\_conf}/\texttt{xcorr}/\texttt{comp}/\texttt{inv} online; confirm rate shift \\
+Trigger chain (TP/TA/TC) & DAQ (+ PDS input) & \emph{Out of minimal scope}; plan/schedule for post‑PRR validation \\\bottomrule
+\end{tabular}

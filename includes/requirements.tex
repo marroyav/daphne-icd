@@ -1,0 +1,31 @@
+
+\section{Interface Requirements and Budgets}
+\label{sec:reqs}
+\renewcommand{\arraystretch}{1.16}
+\begin{longtable}{@{}p{2.1cm}p{9.5cm}p{2.2cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{Type} \\\midrule
+REQ-DATA-001 & The PDS--\gls{daq} link shall use 10\,GbE optical (10GBase-SR) over OM3/OM4 with LC connectors. & Physical \\
+REQ-DATA-002 & Data shall be transmitted using UDP over Ethernet with jumbo frames (MTU $\sim$9000~B). & Protocol \\
+REQ-DATA-003 & Maximum sustained payload throughput per DAPHNE link shall not exceed 9.5\,Gb/s (including protocol overheads). & Performance \\
+REQ-DATA-004 & Packet loss (steady-state) shall be $<10^{-12}$ BER equivalent; dropped-packet flagging must be explicit in the packet header. & Reliability \\
+REQ-DATA-005 & Time-stamping shall use the \gls{dts} epoch and be identical across endpoints to within 5\,ns at the firmware interface. & Timing \\
+REQ-DATA-006 & Clock jitter at the endpoint shall be $<180$\,ps RMS integrated over the specified band. & Timing \\
+REQ-CTRL-001 & Control/config/monitoring shall use dedicated 1\,GbE optical links, logically separated from data. & Physical \\
+REQ-CTRL-002 & All \gls{ccm}-initiated commands shall receive an acknowledgement with status code and timestamp. & Protocol \\
+REQ-CTRL-003 & Firmware update operations shall expose a software flag indicating path unavailability during reprogramming. & Operations \\
+REQ-OPS-001 & Auto-recovery must attempt link re-sync and timing re-lock within $\le$\,10\,ms before escalating to \gls{ccm}. & Operations \\
+REQ-SEC-001 & Control plane shall implement role-based access and per-endpoint authentication. & Security \\
+\bottomrule
+\end{longtable}
+
+\subsection{Performance Budgets}
+\begin{longtable}{@{}p{4.5cm}p{3.2cm}p{7.1cm}@{}}
+\toprule
+\textbf{Budget} & \textbf{Target} & \textbf{Notes} \\\midrule
+Per-link throughput (payload) & $\le$ 9.5\,Gb/s & 10\,GbE PHY with overheads; bursts allowed up to line rate. \\
+End-to-end latency (P95) & $\le$ 6.2\,$\mu$s & Includes ADC$\to$SERDES, network, NIC, user-space. \\
+Timestamp alignment across endpoints & $\le$ 5\,ns & At \gls{dts} firmware interface; endpoint compensation required. \\
+Clock jitter (endpoint) & $<180$\,ps & RMS, integrated over specified band. \\
+\bottomrule
+\end{longtable}

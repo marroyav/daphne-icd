@@ -1,0 +1,43 @@
+
+% --- Auto-generated from DAPHNE_V3_SimpleSelfTrigger_frame_format.xlsx ---
+\begin{table}[H]
+\centering
+\caption{Selected fields from the \emph{Simple Self-trigger} frame (header words and first two data words).}
+\label{tab:packet-snippet}
+\begin{tabular}{r c l l}
+\hline
+\textbf{Word} & \textbf{Bits} & \textbf{Field} & \textbf{Notes}\\
+\hline
+0 & 63 & TBD & TBD width \\
+0 & 41 & Algorithm # (=0) & TBD width \\
+0 & 37:32 & Channel[5:0] &  \\
+0 & 31 & Link & TBD width \\
+0 & 25 & Slot & TBD width \\
+0 & 21 & CrateID & TBD width \\
+0 & 11 & DetID & TBD width \\
+0 & 5 & Version & TBD width \\
+1 & 63:0 & Timestamp (DUNE time, 64‑bit) & from Excel: “64‑bit time stamp” \\
+2 & 63 & TBD &  \\
+2 & 53:48 & Channel number[5:0] &  \\
+2 & 47 & 0 &  \\
+2 & 45 & Baseline (14 bit) &  \\
+2 & 31 & 0 &  \\
+2 & 29 & Threshold (14 bit) &  \\
+2 & 15 & 0 &  \\
+2 & 13 & Trigger sample value (14 bit) &  \\
+9 & 63:56 & ADC([7:0],4) &  \\
+9 & 55:42 & ADC([13:0],3) &  \\
+9 & 41:32 & ADC([13:4],2) &  \\
+9 & 31:28 & ADC([3:0],2) &  \\
+9 & 27:14 & ADC([13:0],1) &  \\
+9 & 13:0 & ADC([13:0],0) &  \\
+10 & 63:62 & ADC([1:0],9) &  \\
+10 & 61:48 & ADC([13:0],8) &  \\
+10 & 47:34 & ADC([13:0],7) &  \\
+10 & 33:32 & ADC([13:12],6) &  \\
+10 & 31:20 & ADC([11:0],6) &  \\
+10 & 19:6 & ADC([13:0],5) &  \\
+10 & 5:0 & ADC([13:8],4) &  \\
+\hline
+\end{tabular}
+\end{table}

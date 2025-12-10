@@ -1,0 +1,19 @@
+
+\section{Timing and Synchronization}
+\label{sec:timing}
+Timing and synchronization are distributed via the \gls{dts} over OS2 single-mode fiber using 1000Base-BX optics
+(TX\,1310\,nm/RX\,1550\,nm at the \gls{daq} side; reciprocal at endpoints). The downlink is continuous and endpoints
+must recover cleanly from interruptions. Uplink provides a minimal protocol subset for status and delay tuning.
+
+\subsection{Clocking}
+The reference tick is 62.5\,MHz. Endpoint clock jitter shall be $<180$\,ps RMS. Timestamping uses the \gls{dts} epoch
+and must be aligned across endpoints within 5\,ns at the firmware interface. Endpoint logic must compensate fixed and
+variable delays introduced by front-end processing so the timestamp represents the time of the physics signal at the sensor.
+
+\subsection{Alignment Procedure (example)}
+\begin{enumerate}
+  \item Receive downlink; verify lock and phase.
+  \item Apply programmable delay tap to align PPS \& ToD.
+  \item Issue epoch reset; confirm timestamp continuity.
+  \item Log residual skew and jitter; raise alarm if out of tolerance.
+\end{enumerate}

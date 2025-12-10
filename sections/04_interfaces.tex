@@ -1,0 +1,74 @@
+\section{Physical Interfaces}
+
+\subsection{Timing Interface (DTS)}
+\label{sec:timing}
+
+\paragraph{Physical layer.}
+Timing and synchronization are distributed over single-mode OS2 fiber using bidirectional 1000BASE-BX-20 SFPs:
+\begin{itemize}[nosep]
+  \item DAQ master: TX \SI{1310}{nm}, RX \SI{1550}{nm}; Endpoints use the complementary wavelengths.
+  \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
+  \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
+\end{itemize}
+
+\paragraph{Reference and quality.}
+\begin{itemize}[nosep]
+  \item Distributed reference: \SI{62.5}{MHz} (HD and VD).
+  \item Timestamp alignment at the DTS firmware interface: \(\le\)\SI{5}{ns} within a module (requirement).
+  \item Endpoint recovered-clock quality: integrated jitter \(<\)\SI{180}{ps} (target).
+\end{itemize}
+
+
+
+\paragraph{Startup, loss-of-lock, and recovery.}
+\begin{itemize}[nosep]
+  \item On power-up: endpoints wait for valid timing, report lock, then enable data transmission.
+  \item On loss-of-lock: flag packets as impacted; attempt auto-relock; report status via CCM; throttle/hold data if configured.
+\end{itemize}
+
+
+\subsection{Data Interface (10\,GbE Readout)}
+\label{sec:data}
+
+\paragraph{Physical layer.}
+\begin{itemize}[nosep]
+  \item Optical: OM3/OM4 multimode; IEEE\,802.3ae 10GBASE-SR (\(\lambda\approx\)\SI{850}{nm}); LC connectors.
+  \item Receiver input operating range: \(-17\)\,dBm to \(0\)\,dBm (nominal range used for link budgeting).
+  \item One or more 10\,GbE lanes per DAPHNE FEB (design supports up to four 10\,GbE links if provisioned).
+\end{itemize}
+
+\paragraph{Link usage model.}
+\begin{itemize}[nosep]
+  \item Unidirectional data flow (DAPHNE\(\to\)DAQ). Reverse direction may be used only for link monitoring/flow control (no configuration).
+  \item DAQ provides the 10\,GbE/UDP transmitter firmware IP and the common DAQ \emph{header} block.
+  \item Jumbo frames with MTU \(\sim\)9000\,B; UDP payloads aggregate multiple blocks to optimize efficiency.
+\end{itemize}
+
+
+
+\paragraph{Topology and scaling.}
+\begin{itemize}[nosep]
+  \item HD: \(\sim\)150 DAPHNE endpoints (1 per APA), nominally 1\(\times\)10\,GbE each (expandable).
+  \item VD: 42 DAPHNE endpoints (32 ch per board).
+\end{itemize}
+
+
+\subsection{Control, Configuration, and Monitoring (CCM)}
+\label{sec:ccm}
+
+\paragraph{Physical/logical separation.}
+\begin{itemize}[nosep]
+  \item Each DAPHNE and each LCM provides a dedicated 1\,GbE SFP link reserved for CCM (no data readout on this link).
+  \item Fibers up to the PDS mini-rack patch panels are provided by PDS; continuation and active switching are coordinated with DAQ and Technical Coordination.
+\end{itemize}
+
+\paragraph{Functional requirements.}
+\begin{itemize}[nosep]
+  \item End-to-end configuration of firmware parameters (AFE, trigger/self-trigger, packetization, thresholds, timing trims) with positive acknowledgements.
+  \item Health monitoring: link state (timing, data, CCM), temperature/voltage, firmware/bitstream IDs, error counters, throttling statistics.
+  \item Safe firmware updates (DAPHNE and LCM): advertise “firmware path unavailable” flag to SC/CCM during reprogramming.
+  \item Coexistence with Slow Controls (if used). Multiple controllers must be serialized or brokered to avoid races; PDS is responsible for concurrency policy.
+\end{itemize}
+
+
+

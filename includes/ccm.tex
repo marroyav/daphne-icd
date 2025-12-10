@@ -1,0 +1,38 @@
+
+\section{Control, Configuration, and Monitoring}
+\label{sec:ccm}
+
+\subsection{Control Plane}
+The control plane uses dedicated 1\,GbE optical links. Commands and telemetry are exchanged via a request/response
+protocol with explicit acknowledgements. The following state machine governs endpoint behavior:
+
+\begin{verbatim}
+OFF --(power seq ok)--> BOOT --(fw ok)--> IDLE --(load cfg)--> CONFIGURED
+CONFIGURED --(arm)--> ARMED --(run)--> RUN --(stop)--> IDLE
+ANY --(fault)--> ERROR --(clear)--> IDLE
+\end{verbatim}
+
+\subsection{Command Set (excerpt)}
+\begin{longtable}{@{}p{3.1cm}p{6.5cm}p{5.6cm}@{}}
+\toprule
+\textbf{Command} & \textbf{Parameters} & \textbf{Response / Notes} \\\midrule
+PING & none & \texttt{PONG} + status + timestamp \\
+LOAD\_CFG & config blob ID / hash & \texttt{ACK} or error; audit log entry \\
+ARM & run ID & Ready to accept triggers; returns timestamp \\
+START & run ID & Data path enabled; returns sequence start \\
+STOP & reason code & Graceful drain; final counters \\
+RESET & scope (link/timing/full) & Reinitializes selected sub-systems \\
+FW\_UPDATE & image ID & Enters update mode; path unavailable flag set \\
+\bottomrule
+\end{longtable}
+
+\subsection{Telemetry (excerpt)}
+\begin{longtable}{@{}p{4.2cm}p{7.8cm}p{2.2cm}@{}}
+\toprule
+\textbf{Metric} & \textbf{Description} & \textbf{Rate} \\\midrule
+Link counters & bytes, packets, drops, errors, BER estimate & 1\,Hz \\
+Timing lock & lock status, phase, jitter estimate & 1\,Hz \\
+Buffers & occupancy, watermarks, back-pressure events & 2\,Hz \\
+Temperatures/Voltages & board-level health & 0.2\,Hz \\
+\bottomrule
+\end{longtable}

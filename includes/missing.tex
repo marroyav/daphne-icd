@@ -1,0 +1,19 @@
+
+\section{Outstanding Items / Missing Information}
+\label{sec:missing}
+\begin{enumerate}
+  \item \textbf{Header Word~0 field widths:} exact bit allocations for Version, DetID, CrateID, Slot, Link, Algorithm, Channel.
+  \item \textbf{Explicit CRC/Checksum:} confirm whether a per-frame or per-packet integrity field is present and its polynomial/scope.
+  \item \textbf{Throttling policy:} algorithm, thresholds, and the exact header flag(s) used to mark throttled frames.
+  \item \textbf{Back-pressure semantics:} drop vs. throttle rules at queues; any pause/flow-control mechanism used.
+  \item \textbf{Timestamp epoch and rollover:} precise epoch, rollover interval, and wrap-handling procedure.
+  \item \textbf{Absolute time distribution:} ToD format, PPS relationship, phase alignment method and tolerances.
+  \item \textbf{Network profile:} VLAN IDs, QoS markings, MTU, L2/L3 routing assumptions, NIC offloads required.
+  \item \textbf{Optical link budget:} launch/receive power per SFP, path loss assumptions, connector count/margins.
+  \item \textbf{Uplink timing subset:} exact commands/status words supported by the endpoint for the \gls{dts}.
+  \item \textbf{Command/response catalog:} numeric IDs, parameter schemas, error code set, timeouts, and retries.
+  \item \textbf{Security controls:} authentication mechanism for control plane, credential storage/rotation, allowed ports.
+  \item \textbf{Acceptance criteria values:} duration/targets for long-run tests, environmental ranges for validation.
+  \item \textbf{Calibration hooks:} how \texttt{tp\_conf}, \texttt{self\_trigger\_xcorr}, \texttt{compensator}, \texttt{inverter} are versioned in Conditions DB and applied online.
+  \item \textbf{Compatibility ranges:} minimum/maximum supported firmware & software versions per release.
+\end{enumerate}

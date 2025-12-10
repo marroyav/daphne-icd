@@ -1,0 +1,12 @@
+
+\section{Verification and Validation}\label{sec:prr-tests}
+\subsection{PRR Pass/Fail (Minimal Scope)}
+\begin{itemize}
+  \item Timing: DAQ-driven timing run; stable sync over $\ge$ N hours; sub-tick alignment check.
+  \item Readout: End-to-end decode of frames incl.\ peak descriptors; lossless at $\ge$ 8\,Gb/s.
+  \item Config: Generate and apply configuration via DAQ; audit trail recorded.
+  \item Calibration readiness: Apply updated SPE template/thresholds; observe predicted rate vs threshold shift.
+  \item Test the alignment against the calibration system.
+\end{itemize}
+\subsection{Traceability}
+Each requirement REQ-* is mapped to at least one test procedure and evidence artifact (logs, captures, counters). A CSV (\texttt{tables/traceability.csv}) can be maintained.

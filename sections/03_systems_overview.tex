@@ -1,0 +1,45 @@
+
+\section{Systems Overview}
+\subsection{PDS}
+The Photon Detection System (PDS) consortium is responsible for the design, prototyping, construction, and installation of the electronics that collect and process signals from the photosensors in both the Horizontal Drift (HD) and Vertical Drift (VD) far detectors.  
+
+In the HD design, groups of SiPMs are combined into single readout channels through a mix of active and passive ganging. The resulting analog signals are conditioned by cold amplifiers and transmitted over twisted-pair cables to DAPHNE front-end boards (FEBs) installed outside the cryostat in PDS mini-crates. Differential transmission is employed to suppress common-mode noise.  
+
+In the VD design, larger X-ARAPUCA tiles group SiPMs into two readout channels per tile. Membrane tiles are powered via copper conductors, while cathode tiles, biased at the cathode voltage (320\,kV), rely on Power-over-Fiber technology for the SiPM bias distribution and CE power. Signal transmission from cathode tiles is performed optically: cold ($\sim$87\,K) emitters send signals to warm optical receivers interfaced to DAPHNE, which then forward the signals electrically to the analog readout chain. The DAPHNe warm electronics for both detectors also provide timing extraction, data aggregation, and formatting prior to transfer to the DAQ.  
+
+The full HD PDS comprises approximately \textbf{6000 channels}, while the VD PDS comprises \emph{352} membrane tiles and \emph{320} cathode tiles, each producing two channels, for a total of \textbf{1344 channels}.  
+
+Channel-to-board mapping is detector-specific. In HD, each DAPHNE FEB services 40 channels corresponding to one APA, requiring about \textbf{150 FEBs} for the full detector. In VD, each DAPHNE handles 32 channels, resulting in a total of \textbf{42 FEB endpoints} to cover all channels.  
+\subsection{DAQ}
+The DAQ consortium is responsible for collecting the data from all the PDs, APAs (FD1-
+HD), CRP (FD2-VD) selecting the interesting interactions and assembling them for
+transmission to permanent storage on disk or tape. The DAQ consortium is also responsible
+for the distribution of timing signals to all the DUNE detector components, as well as for the
+control, configuration, and monitoring of all the active readout components, through the
+Control Configuration and Monitoring (CCM) subsystem.
+
+Timing distribution, readout aggregation, and CCM. DAQ provides common firmware blocks for timing endpoint decode and 10\,GbE UDP transmission.
+
+\subsection{Light Calibration Modules}
+A pulsed UV-light calibration system monitors gain, linearity, timing resolution, and long-term stability. Light Calibration Modules (LCM) generate UV pulses (245–280\,nm), which are distributed through optical fibers and diffusers mounted on detector structures. Each LCM integrates an FPGA-based controller, an LED pulser module (LPM), and a bulk power supply. The LPM settings (amplitude, multiplicity, repetition rate, duration) are digitally controlled, while internal ADCs monitor a reference photodiode for pulse-by-pulse stability.\\
+Up to 18 timing endpoints are foreseen for PDS calibration electronics per detector module.
+
+\subsection{Timing interface}
+
+\label{sec:timing}
+
+The primary functions of the DUNE Timing System (DTS) are to:
+\begin{itemize}[nosep]
+  \item provide a stable and phase-aligned master clock to all DAQ components;
+  \item receive external signals (including triggers) into the DUNE clock domain and time-stamp them;
+  \item distribute synchronization, calibration, and trigger commands to the DAQ system;
+  \item perform continuous self-checking and health monitoring;
+  \item provide status information to the DUNE Configuration, Control, and Monitoring (CCM);
+  \item act as a data source, recording all timing signals received, distributed, or throttled.
+\end{itemize}
+
+The synchronisation requirements imposed by the DUNE physics programme are:
+\begin{itemize}[nosep]
+  \item intra-detector module synchronisation at the level of $\mathcal{O}$(1\,ns);
+  \item synchronisation of DTS timestamps to Coordinated Universal Time (UTC) at the level of $\mathcal{O}$(1\,$\mu$s).
+\end{itemize}

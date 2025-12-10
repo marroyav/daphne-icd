@@ -1,0 +1,23 @@
+
+\section{Data Formats and Protocols}
+\label{sec:dataformats}
+
+\subsection{Packetization and Transport}
+Frames are sent from \gls{daphne} to the \gls{daq} over 10\,GbE using UDP with jumbo frames (MTU $\sim$9000~B).
+Multiple frame blocks may be aggregated per UDP packet to optimize bandwidth efficiency. The control plane is strictly
+separated and shall not be multiplexed with readout traffic.
+
+\subsection{Frame Structure (Simple Self-Trigger Mode)}
+Each frame comprises 64-bit words with MSB at bit~63 and LSB at bit~0. Words~0--8 form the header with identifiers,
+time-stamp and trigger context, while words~9--$N$ carry the waveform payload (14-bit ADC samples densely packed and
+potentially split across word boundaries).
+
+\subsubsection{Header Fields}
+\input{tables/header_longtable.tex}
+
+\subsubsection{Payload Fields}
+\input{tables/payload_longtable.tex}
+
+\subsection{Decoding Notes}
+Split ADC fields (e.g., \texttt{ADC([13:4],n)} and \texttt{ADC([3:0],n)}) must be reassembled to recover the full 14-bit
+sample. A machine-readable decoder map (CSV) accompanies this document to enable software auto-generation of unpackers.

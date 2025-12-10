@@ -1,0 +1,110 @@
+\section{Protocols and data formats}
+
+\subsection{Timing Interface (DTS)}
+\label{sec:timing}
+
+Timing and synchronization are distributed by the DUNE Timing System (DTS) using the DTS protocol and message model described in the DTS Requirements and Protocol documents.\footnote{\url{https://edms.cern.ch/document/2209895}} The timing master provides a common 62.5\,MHz clock and timestamp to all endpoints within a detector module , and delivers both fixed--length and variable--length timing messages.
+
+\paragraph{Firmware integration.}
+A common, supported firmware block for DTS decoding shall be incorporated into the receiving FPGA design of each PDS endpoint component (e.g.\ DAPHNE and LCM). Endpoints shall recover the DTS clock and timestamp, apply endpoint delay compensation as required by system configuration, and expose lock/health status for monitoring.
+
+\paragraph{Synchronous commands.}
+In addition to clock and timestamp distribution, the timing system issues time--synchronous commands to endpoints. The PDS will use these commands to (i) drive LED pulse generation in the LCM during calibrations and (ii) tag calibration events in the DAPHNE data stream by echoing the command identifier in the readout header.
+
+\paragraph{Addressability and partitioning.}
+Timing messages are addressable to single endpoints, timing groups, or globally. PDS endpoints shall be configured with group masks consistent with DAQ partitioning to enable selective triggering and commissioning.
+
+\paragraph{Periodic messages.}
+The DTS master shall generate periodic timestamp messages to facilitate rapid re-synchronization and health checking.
+
+\subsubsection{Operations and Interfaces}
+\label{subsec:timing-ops}
+
+\begin{itemize}
+  \item\textbf{Configuration Path.} All timing-related endpoint configuration (e.g.\ group masks, delay trims, status polling cadence) shall be commanded via CCM using Protobuf messages; the timing command itself is delivered by the DTS, not over the CCM link.
+  \item\textbf{Calibration Use.} Calibration sequences shall be orchestrated such that the DTS synchronous command simultaneously triggers LCM LED emission and DAPHNE waveform capture; DAPHNE readout headers shall mark these events as calibration.
+  \item\textbf{Health and Recovery.} Loss-of-lock or alignment faults detected at an endpoint shall be flagged in data, reported via CCM, and subjected to auto-recovery. Persistent faults are escalated for CCM-driven mitigation without perturbing locked endpoints.
+\end{itemize}
+
+\subsubsection{Data Header Integration}
+\label{subsec:timing-header}
+
+To satisfy DAQ requirements for provenance and event building, DAPHNE readout headers shall include synchronous timing provenance fields. At minimum, the header shall contain:
+\begin{itemize}
+  \item The last DTS command ID observed at packet formation time.
+  \item A timing lock/valid bit indicating endpoint alignment at capture time.
+  \item The DTS timestamp domain reference used for payload timing.
+\end{itemize}
+Field encoding and bit allocation shall be specified in the PDS data format section and kept consistent with DAQ parsing software.
+
+
+\subsection{Data Interface(UDP/10\,GbE Readout)}
+
+\label{sec:data}
+
+Data will be transmitted from the PDS to the DAQ using UDP packets and jumbo frames
+(\(\sim\)9000\,B MTU) over 10\,GbE Ethernet links, following the agreed PDS data format.
+The DAQ consortium provides the common UDP transmitter firmware block \textit{hermes}, which is integrated into the DAPHNE FPGA to collect, package,
+and transmit waveform data over UDP.
+
+\paragraph{Data format.}
+The packet format consists of:
+\begin{itemize}[nosep]
+  \item \textbf{DAQ header}: common block containing timestamp, crate, slot, and stream
+        identifiers of suitable bit width;
+  \item \textbf{DAPHNE header}: frame counter, trigger information, timing command echo,
+        throttling/error flags, and reserved fields for future use;
+  \item \textbf{Payload}: defined number of packed waveform samples (14-bit);
+  \item \textbf{Footer (optional)}: CRC or integrity word, if enabled.
+\end{itemize}
+
+Timestamps and source information are provided by the DAQ header. Multiple
+DAQ+DAPHNE blocks may be aggregated in a single UDP datagram to optimize network
+efficiency. A high-level description of the format is available in \href{https://edms.cern.ch/file/2088726/6/DAPHNE_V3_SimpleSelfTrigger_frame_format.xlsx}{EDMS 2088726 v.6}. The detailed specification will be finalized during the integration
+phase. 
+
+
+\paragraph{Throttling and loss handling.}
+The PDS consortium is responsible for ensuring correct operation when the DAPHNE output rate approaches the maximum link throughput (e.g.\ due to noise bursts, high background,
+or calibration activity). Regardless of the throttling policy, the following principles apply:
+\begin{itemize}[nosep]
+  \item data loss must be minimized;
+  \item trigger efficiency must be preserved as much as possible;
+  \item packets affected by throttling must be explicitly flagged in the data stream;
+  \item PDS and DAQ consortia will jointly define the impact of throttling strategies on
+        the packet format to ensure downstream processing remains consistent.
+\end{itemize}
+
+\paragraph{LCM data.}
+At present, no data fragments are foreseen from the LCMs. Should this requirement change,
+LCMs will adopt the same 10\,GbE UDP packet format.
+
+
+\subsection{CCM Protocols and Operations}
+
+All configuration, control, and monitoring of the DAPHNE and LCM modules shall be performed exclusively via the  (CCM) interface. The communication protocol is defined using Protocol Buffers (Protobuf) messages transmitted over the dedicated Ethernet control link. The following operations are supported in the DAPHNE Firmware:
+
+\paragraph{Configuration}
+\begin{itemize}[nosep]
+  \item \texttt{ConfigureRequest} / \texttt{ConfigureResponse}: complete FEB configuration, including timing, analog and control settings.
+  \item \texttt{ScrapRequest} / \texttt{ScrapResponse}: release resources or reset an endpoint as part of re-initialization.
+\end{itemize}
+
+\paragraph{Monitoring and Information}
+\begin{itemize}[nosep]
+  \item \texttt{InfoRequest} / \texttt{InfoResponse}: monitoring of stream statistics, per-channel counters, bias voltages, voltage/current monitors, and temperature sensors.
+\end{itemize}
+
+\paragraph{Diagnostics}
+\begin{itemize}[nosep]
+  \item \texttt{DumpBuffersRequest} / \texttt{DumpBuffersResponse}: waveform capture and export to files for diagnostic or calibration purposes.
+  
+\end{itemize}
+
+\paragraph{Error Handling}
+\begin{itemize}[nosep]
+  \item Endpoints shall flag affected data when an error condition is detected.
+
+  \item DAQ backend checks shall complement endpoint reports; any additional errors detected downstream shall be forwarded to the CCM, which remains the single point of coordination for recovery.
+\end{itemize}
+

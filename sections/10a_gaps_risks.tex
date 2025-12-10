@@ -1,0 +1,10 @@
+
+\section{Gaps and Risks}
+\begin{itemize}
+  \item \textbf{Firmware deployment:} official repo build path (TCL/FuseSoC alternatives) --- document the supported flow and tag a reference commit.
+  \item \textbf{FPGA resources:} tight LUT budget --- note any interface impacts (e.g.\ optional headers, CRC selection).
+  \item \textbf{Protobuf in DAQ:} PoC tested; full implementation ongoing --- add the request/response schema for CCM to the software interface appendix.
+  \item \textbf{40$\to$1 HERMES sender:} ongoing --- specify the aggregation factor, latency impact, and back-pressure rules if applicable.
+  \item \textbf{Timing alignment:} tick-level verified; phase alignment in progress --- add acceptance metric and alarm thresholds.
+  \item \textbf{PMT mezzanine:} reflections at high bias --- record as a risk with decision point (dedicated path vs mitigation).
+\end{itemize}

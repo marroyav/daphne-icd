@@ -1,0 +1,16 @@
+
+\section{Outstanding \& Missing Information}
+\begin{enumerate}
+  \item \textbf{Header word 0 bit allocation:} exact bit-widths for Version, DetID, CrateID, Slot, Link, Algorithm\#; endianness and packing order.
+  \item \textbf{Words 3--8 semantics:} fields currently marked TBD; intended use (trigger primitives? quality flags? CRC?).
+  \item \textbf{Timestamp domain/epoch:} TAI vs UTC; leap-second policy; wrap behavior.
+  \item \textbf{Sequence/integrity:} packet sequence counters, CRC scope (header vs payload), error code dictionary.
+  \item \textbf{Network profile:} VLAN IDs and DSCP/QoS, maximum in-flight jumbo frames, buffering/back-pressure policy.
+  \item \textbf{Throughput limits:} per-board aggregate vs per-link; throttling strategy and flags in the stream.
+  \item \textbf{Timing commands vocabulary:} list of accepted DTS commands for calibration and control at endpoints.
+  \item \textbf{Latency budget breakdown:} per segment from ADC to DAQ header insert; acceptance thresholds.
+  \item \textbf{Addressing:} MAC OUI policy and IP addressing scheme for 1\,GbE control.
+  \item \textbf{Compatibility matrix:} DAPHNE FW/DAQ SW/Timing release versions tested (and minimum required).
+  \item \textbf{Security:} authentication mechanism for control APIs; access roles; logging requirements.
+  \item \textbf{Install constraints:} connector part numbers, fiber length limits, bend radius, labeling scheme.
+\end{enumerate}

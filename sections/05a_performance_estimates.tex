@@ -1,0 +1,35 @@
+
+\section{Performance Estimates}
+
+
+
+
+
+
+Assumptions: $n_\text{bits}=14$, $f_s=\SI{62.5}{MSPS}$, line coding $8\mathrm{b}/10\mathrm{b}$.
+Window length in time: 320 ticks $\approx$ \SI{5.12}{\micro\second}, 1024 ticks $\approx$ \SI{16.384}{\micro\second}.
+
+\subsection{HD (6000 channels)}
+Full stream:
+\begin{align}
+R_\text{stream} &= N_\text{ch}\cdot f_s \cdot n_\text{bits} \cdot \tfrac{10}{8} \\
+&= 6000 \times (62.5\times 10^6)\times 14 \times \tfrac{10}{8} = \SI{6.5625}{\tera\bit\per\second}
+\end{align}
+Self-trigger (example at $f_\text{trg}=\SI{4.8}{kHz}$):
+\begin{align}
+R_\text{trg} &= N_\text{ch}\cdot f_\text{trg}\cdot L_\text{win}\cdot n_\text{bits}\cdot \tfrac{10}{8} \\
+R(320) &= \SI{161.28}{\giga\bit\per\second},\quad R(1024)=\SI{516.10}{\giga\bit\per\second}
+\end{align}
+
+\subsection{VD (1344 channels)}
+Full stream:
+\begin{align}
+R_\text{stream} &= 1344 \times (62.5\times 10^6)\times 14 \times \tfrac{10}{8} = \SI{1.47}{\tera\bit\per\second}
+\end{align}
+Self-trigger (example at $f_\text{trg}=\SI{48}{kHz}$):
+\begin{align}
+R(320) &= \SI{361.27}{\giga\bit\per\second},\quad R(1024)=\SI{1156.06}{\giga\bit\per\second}
+\end{align}
+
+\subsection{Implications}
+Rate headroom at module input may be acceptable only when using self triggered packets (cero suppression algorithm), but \emph{storage} will exceed constraints without appropiate trigger, ROI selection, compression, and careful threshold/window choices.

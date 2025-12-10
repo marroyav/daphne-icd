@@ -1,0 +1,17 @@
+
+\section{Operations and Procedures}
+\label{sec:ops}
+\subsection{Commissioning Sequence (Golden Path)}
+\begin{enumerate}
+  \item Initialize timing endpoint; verify lock.
+  \item Bring up data link; verify optical power and error counters.
+  \item Load configuration; verify telemetry setpoints.
+  \item Arm and start run; validate header fields and timestamps.
+\end{enumerate}
+
+\subsection{Fault Handling}
+\begin{itemize}
+  \item \textbf{Link loss}: attempt re-train (3 tries, 100\,ms backoff), then escalate to \gls{ccm}.
+  \item \textbf{Timing unlock}: auto re-lock within 10\,ms; if persistent, pause data and notify \gls{ccm}.
+  \item \textbf{Over-rate}: apply throttling policy and set explicit header flag; emit telemetry.
+\end{itemize}

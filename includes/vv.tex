@@ -1,0 +1,25 @@
+
+\section{Verification and Validation Plan}
+\label{sec:vv}
+\subsection{Conformance}
+\begin{itemize}
+  \item Header field compliance (version, IDs, endianness, counters).
+  \item Packet CRC/checksum integrity (if applicable).
+  \item Timestamp domain and epoch checks.
+\end{itemize}
+
+\subsection{Performance}
+\begin{itemize}
+  \item Sustained throughput $\ge$ 9.0\,Gb/s payload for 1\,hour, zero drops.
+  \item Latency/jitter profile under congestion (P95 $\le$ 6.2\,$\mu$s).
+\end{itemize}
+
+\subsection{Robustness}
+\begin{itemize}
+  \item Link flap, power cycle, timing unlock/re-lock.
+  \item Soak test 24h: error rate, drift, thermal behavior.
+\end{itemize}
+
+\subsection{Traceability}
+Each requirement in Section~\ref{sec:reqs} maps to at least one test case; test IDs and results are archived with artifacts
+(pcap, logs, \texttt{.json} configs). 

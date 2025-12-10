@@ -1,0 +1,36 @@
+\begin{longtable}{@{}r c r p{9.5cm}@{}}
+\toprule
+Word & Bits & Width & Field \\
+\midrule
+\endfirsthead
+\toprule
+Word & Bits & Width & Field \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+0 & [63:63] & 1 & TBD \\
+0 & [41:41] & 1 & Algorithm # (=0) \\
+0 & [37:37] & 1 & Channel[5:0] \\
+0 & [31:31] & 1 & Link \\
+0 & [25:25] & 1 & Slot \\
+0 & [21:21] & 1 & CrateID \\
+0 & [11:11] & 1 & DetID \\
+0 & [5:5] & 1 & Version \\
+1 & [63:63] & 1 & 64-bit time stamp from DUNE timing system \\
+2 & [63:63] & 1 & TBD \\
+2 & [53:53] & 1 & Channel number[5:0] \\
+2 & [47:47] & 1 & 0 \\
+2 & [45:45] & 1 & Baseline (14 bit) \\
+2 & [31:31] & 1 & 0 \\
+2 & [29:29] & 1 & Threshold (14 bit) \\
+2 & [15:15] & 1 & 0 \\
+2 & [13:13] & 1 & Trigger sample value (14 bit) \\
+3 & [63:63] & 1 & TBD \\
+4 & [63:63] & 1 & TBD \\
+5 & [63:63] & 1 & TBD \\
+6 & [63:63] & 1 & TBD \\
+7 & [63:63] & 1 & TBD \\
+8 & [63:63] & 1 & TBD \\
+\end{longtable}
+\captionof{table}{Header fields per 64-bit word}\label{tab:header}

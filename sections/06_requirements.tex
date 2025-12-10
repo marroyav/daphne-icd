@@ -1,0 +1,22 @@
+
+\section{Requirements and Budgets}\label{sec:reqs}
+\subsection{Functional}
+\begin{itemize}
+  \item \textbf{REQ-DATA-001} DAPHNE shall transmit waveform payloads and metadata to DAQ over 10\,GbE UDP with MTU~$\ge$~9000\,B.
+  \item \textbf{REQ-TIME-001} Endpoints shall lock to 62.5\,MHz and maintain timestamp alignment within the DTS guarantee at the firmware interface.
+  \item \textbf{REQ-CTRL-001} CCM commands shall be acknowledged over 1\,GbE within a bounded timeout; endpoints shall expose health and version telemetry.
+\end{itemize}
+\subsection{Performance Budgets}
+\begin{itemize}
+  \item \textbf{REQ-PERF-THR-001} Sustained throughput per 10\,GbE link $\ge$ 8\,Gb/s application payload for $>$1\,hour without loss.
+  \item \textbf{REQ-PERF-LAT-001} Timestamp-to-header latency jitter $<$ 1\,$\mu$s (TBD exact budget by path breakdown).
+  \item \textbf{REQ-PERF-BER-001} Effective packet loss $<10^{-9}$ over soak; if exceeded, frames must be flagged.
+\end{itemize}
+\subsection{Reliability}
+\begin{itemize}
+  \item \textbf{REQ-REL-001} Auto-recover from timing or link loss within TBD ms; report events to CCM.
+\end{itemize}
+\subsection{Security}
+\begin{itemize}
+  \item \textbf{REQ-SEC-001} Control plane isolated (VLAN/ACL); authenticated access to configuration APIs.
+\end{itemize}

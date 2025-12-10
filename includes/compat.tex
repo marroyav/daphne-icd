@@ -1,0 +1,17 @@
+
+\section{Compatibility, Dependencies, and Security}
+\label{sec:compat}
+\subsection{Version Matrix (example)}
+\begin{longtable}{@{}p{3.5cm}p{4.5cm}p{7cm}@{}}
+\toprule
+\textbf{Component} & \textbf{Version} & \textbf{Notes} \\\midrule
+DAPHNE Firmware & vX.Y.Z & Build hash; timing IP version \\
+DAQ Readout SW  & vA.B.C & UDP sender/receiver build \\
+Timing Release  & R\_YYYYMMDD & Endpoint IP version \\
+Switch profile  & P\_name & QoS/VLAN config \\
+\bottomrule
+\end{longtable}
+
+\subsection{Security}
+Control-plane access requires authenticated sessions and role-based authorization. Readout plane is unidirectional and
+does not accept control traffic.
