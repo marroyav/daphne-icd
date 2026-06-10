@@ -30,7 +30,9 @@ requirements:
   \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
   \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
   \item Wavelengths: TX \SI{1550}{nm}, RX \SI{1490}{nm}.
-  \item Optical budget: minimum transmit power \(>\)-2\,dBm and minimum receive power \(<\)-24\,dBm.
+  % \item Optical budget: minimum transmit power \(>\)-2\,dBm and minimum receive power \(<\)-24\,dBm.
+  \item Endpoint SFP minimum transmit launch power \(\ge\)-2\,dBm and receiver sensitivity \(\le\)-24\,dBm; with \SI{17}{dB} maximum passive optical network loss, this gives at least \SI{5}{dB} worst-case margin.
+
   \item Digital Optical Monitoring (DOM) should be implemented.
   \item The SFP LOS signal shall be connected to the FPGA for standard endpoint firmware; the SFP I2C interface should be available for optical-status readout and debugging.
   \item The endpoint transmitter shall remain disabled except when requested by DTS; endpoint firmware shall control the SFP \texttt{TX\_DISABLE} input.
