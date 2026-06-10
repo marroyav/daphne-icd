@@ -6,7 +6,10 @@
 Timing and synchronization are distributed by the DUNE Timing System (DTS) using the DTS protocol and message model described in the DTS Requirements and Protocol documents.\footnote{\url{https://edms.cern.ch/document/2209895}} The timing master provides a common 62.5\,MHz clock and timestamp to all endpoints within a detector module , and delivers both fixed--length and variable--length timing messages.
 
 \paragraph{Firmware integration.}
-A common, supported firmware block for DTS decoding shall be incorporated into the receiving FPGA design of each PDS endpoint component (e.g.\ DAPHNE and LCM). Endpoints shall recover the DTS clock and timestamp, apply endpoint delay compensation as required by system configuration, and expose lock/health status for monitoring.
+% A common, supported firmware block for DTS decoding shall be incorporated into the receiving FPGA design of each PDS endpoint component (e.g.\ DAPHNE and LCM). Endpoints shall recover the DTS clock and timestamp, apply endpoint delay compensation as required by system configuration, and expose lock/health status for monitoring.
+
+A common, supported firmware block for DTS decoding shall be incorporated into the receiving FPGA design of each PDS endpoint component (e.g., \ DAPHNE and LCM), following the firmware-block interface described in \href{https://edms.cern.ch/document/2395364}{EDMS 2395364} and the \href{https://edms.cern.ch/document/2580777}{DUNE Timing System Endpoint Integration Guide, EDMS 2580777}. Endpoints shall recover the DTS clock and timestamp, apply endpoint delay compensation as required by system configuration, and expose lock/health status for monitoring.
+
 
 \paragraph{Synchronous commands.}
 In addition to clock and timestamp distribution, the timing system issues time--synchronous commands to endpoints. The PDS will use these commands to (i) drive LED pulse generation in the LCM during calibrations and (ii) tag calibration events in the DAPHNE data stream by echoing the command identifier in the readout header.

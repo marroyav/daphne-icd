@@ -4,19 +4,38 @@
 \label{sec:timing}
 
 \paragraph{Physical layer.}
-Timing and synchronization are distributed over single-mode OS2 fiber using bidirectional 1000BASE-BX-20 SFPs:
+% Timing and synchronization are distributed over single-mode OS2 fiber using bidirectional 1000BASE-BX-20 SFPs:
+% \begin{itemize}[nosep]
+%   \item DAQ master: TX \SI{1310}{nm}, RX \SI{1550}{nm}; Endpoints use the complementary wavelengths.
+%   \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
+%   \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
+% \end{itemize}
+
+% \paragraph{Reference and quality.}
+% \begin{itemize}[nosep]
+%   \item Distributed reference: \SI{62.5}{MHz} (HD and VD).
+%   \item Timestamp alignment at the DTS firmware interface: \(\le\)\SI{5}{ns} within a module (requirement).
+%   \item Endpoint recovered-clock quality: integrated jitter \(<\)\SI{180}{ps} (target).
+% \end{itemize}
+The timing endpoint physical layer shall follow the DUNE Timing System Endpoint
+Integration Guide, \href{https://edms.cern.ch/document/2580777}{EDMS 2580777}.
+The endpoint firmware interface is defined in
+\href{https://edms.cern.ch/document/2395364}{EDMS 2395364 v2}. Timing endpoints
+receive and transmit the DTS timing signal through commercial 1\,Gb/s SFP modules.
+For final FD timing endpoints, the guide specifies 80\,km 1000BASE-BX bidirectional
+SFPs; PDS DAPHNE endpoint SFPs should meet the following endpoint-side optical
+requirements:
 \begin{itemize}[nosep]
   \item DAQ master: TX \SI{1310}{nm}, RX \SI{1550}{nm}; Endpoints use the complementary wavelengths.
   \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
   \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
+  \item Wavelengths: TX \SI{1550}{nm}, RX \SI{1490}{nm}.
+  \item Optical budget: minimum transmit power \(>\)-2\,dBm and minimum receive power \(<\)-24\,dBm.
+  \item Digital Optical Monitoring (DOM) should be implemented.
+  \item The SFP LOS signal shall be connected to the FPGA for standard endpoint firmware; the SFP I2C interface should be available for optical-status readout and debugging.
+  \item The endpoint transmitter shall remain disabled except when requested by DTS; endpoint firmware shall control the SFP \texttt{TX\_DISABLE} input.
 \end{itemize}
 
-\paragraph{Reference and quality.}
-\begin{itemize}[nosep]
-  \item Distributed reference: \SI{62.5}{MHz} (HD and VD).
-  \item Timestamp alignment at the DTS firmware interface: \(\le\)\SI{5}{ns} within a module (requirement).
-  \item Endpoint recovered-clock quality: integrated jitter \(<\)\SI{180}{ps} (target).
-\end{itemize}
 
 
 
@@ -39,7 +58,7 @@ Timing and synchronization are distributed over single-mode OS2 fiber using bidi
 
 \paragraph{Link usage model.}
 \begin{itemize}[nosep]
-  \item Unidirectional data flow (DAPHNE\(\to\)DAQ). Reverse direction may be used only for link monitoring/flow control (no configuration).
+  \item Unidirectional data flow (DAPHNE\(\to\)DAQ). 
   \item DAQ provides the 10\,GbE/UDP transmitter firmware IP and the common DAQ \emph{header} block.
   \item Jumbo frames with MTU \(\sim\)9000\,B; UDP payloads aggregate multiple blocks to optimize efficiency.
 \end{itemize}
@@ -48,9 +67,10 @@ Timing and synchronization are distributed over single-mode OS2 fiber using bidi
 
 \paragraph{Topology and scaling.}
 \begin{itemize}[nosep]
-  \item HD: \(\sim\)150 DAPHNE endpoints (1 per APA), nominally 1\(\times\)10\,GbE each (expandable).
-  \item VD: 42 DAPHNE endpoints (32 ch per board).
+  \item HD: \(\sim\)150 DAPHNE boards (40 ch per board).
+  \item VD: \(\sim\)42 DAPHNE boards (32 ch per board).
 \end{itemize}
+
 
 
 \subsection{Control, Configuration, and Monitoring (CCM)}
