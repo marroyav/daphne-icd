@@ -28,5 +28,5 @@ latexmk -pdf main.tex
 
 ## Notes
 
-- The header/payload tables are programmatically derived from: `/mnt/data/DAPHNE_V3_SimpleSelfTrigger_frame_format.xlsx` (sheet: "Simple Self-trigger").
+- The header/payload tables are programmatically derived from: `DAPHNE-DAQ_Format_Ethernet_25_09_25.xlsx` (sheet: "Simple Self-trigger").
 - Update the Excel and rerun the conversion to refresh the tables and CSV.
