@@ -1,0 +1,43 @@
+,DAPHNE DCS intake,"Full board, service, network, I2C/SPI, power, thermal, optical, timing, AFE, channel, readout, authority, and command registry"
+,Canonical candidate namespace,urn:dune:pds:daphne
+,Instance rule,Instantiate {BoardId} and child index placeholders from HWDB/deployment records; do not hand-maintain 192+ board copies.
+,Contract status,"Every row states whether it is current OPC-UA, current Protobuf, locally readable, required production work, or excluded from routine DCS."
+,Chosen ownership architecture,"DAQ and SC are authenticated clients of one neutral PDS OPC-UA gateway. The gateway alone maintains the DAPHNE Protobuf/ZMQ backend, serializes board mutations, and enforces the Control Owner policy; SC never receives or executes a DAQ configuration handoff."
+,Ownership rule,"DAQ owns timing, AFE/channel operating values, triggers, spy buffers, packetization and readout. SC owns power/bias enable, rails, services, firmware lifecycle, network, fans, equipment health and safe state. Column AB is normative."
+,Write rule,"The OPC-UA gateway authorizes every typed method against the exported workbook policy and serializes accepted board mutations; the board service retains independent range/safety validation. All writes require authenticated authority, state/permit guards, bounded execution, audit, and verified readback/postcondition."
+,Threshold policy,No numeric alarm/interlock thresholds are guessed. PDS/SC/DPS must fill reviewed limits and actions before approval.
+,Prepared,2026-08-13
+,Document status,Draft 0.6 for joint PDS / Slow Controls / DAQ / DPS review
+,Companion document,"DUNE Interface Control Document: DAQ & Photon Detector System (PDS), proposed v8.0 revision"
+,Current prototype namespace,urn:dune:pds:np04; the production namespace and endpoint assignments remain approval items.
+,EDMS template basis,DCS_Intake_Template.xlsx; all example values and actions are explicitly cleared.
+,How to filter,"Filter Tag List by Subsystem, DCS Access and Control Owner. The OPC-UA Control Policy sheet and companion CSV are the machine-readable authorization input for the gateway. Raw Register Map is evidence, not a request to expose unrestricted MMIO."
+,Source baseline,"Ownership was checked against EDMS 2580777, EDMS 2395364 v2, EDMS 2209895 v1, upstream daphnemodules develop edf75a0, and the reviewed DAPHNE firmware working interface; see Source Audit."
+,,
+,Column reference,
+,Column,Meaning
+,Signal / Tag Name,Short machine name for the tag.
+,Description,Plain-language description of what the signal is.
+,OPC-UA Node Address,Full OPC-UA NodeId or browse path the DCS will read.
+,Data Type,OPC-UA data type. Use the dropdown.
+,Eng Units,"Engineering units ONLY (degC, V, A, psia, bar...). Do NOT put units in the value columns."
+,Signal Source,Direct = read straight from device. Derived = computed.
+,Scaling / Derivation,Raw->scaling (slope/offset) OR the formula for derived signals. e.g. (v0-v1)/0.001 ; or raw*0.1-40.
+,Sensor Span Min,Instrument range low (full measurable span). Used for scaling. Numeric only.
+,Sensor Span Max,Instrument range high (full measurable span). Numeric only.
+,Nominal Value,Expected value in normal operation. Numeric only (units go in Eng Units).
+,Desired Range Min,Low end of normal operating band. Numeric only.
+,Desired Range Max,High end of normal operating band. Numeric only.
+,Low Interlock (Trip),Trip/safety action point on the low side. Leave blank if none. Numeric only.
+,Low-Low,Second-stage low alarm. Blank if none. Numeric only.
+,Low,First-stage low alarm. Blank if none. Numeric only.
+,High,First-stage high alarm. Blank if none. Numeric only.
+,High-High,Second-stage high alarm. Blank if none. Numeric only.
+,High Interlock (Trip),Trip/safety action point on the high side. Blank if none. Numeric only.
+,Alarm Deadband / Hysteresis,How far the value must recover before the alarm clears. Numeric only.
+,Alarm On-Delay (s),Seconds the condition must persist before the alarm fires.
+,Interlock Action,"If this signal trips an interlock, what action must occur?"
+,Access,Read-Only = DCS monitors only. Read-Write = DCS can also set it. Write-Only = command only. Use the dropdown.
+,Historize?,Should the DCS log this to the historian? Yes/No.
+,Min Historization Rate,"Slowest acceptable logging interval for the historian. Enter an interval in ms, or 'On-Change'. Independent of poll rate."
+,Poll / Scan Rate (ms),"How often the DCS should read this signal from the device, in milliseconds. e.g. 1000. This is the device poll rate, not the log rate."

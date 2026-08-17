@@ -1,0 +1,15 @@
+Bus role,Current bus,Address,Device/function,Notes
+PS/SOM,dynamic,0x50,K26 SOM identity EEPROM,Identity/enrollment; read-only
+PS/carrier,dynamic,0x18 expected; verify,MCP9808 carrier temperature sensor,Do not freeze address until schematic/runtime validation
+PL monitor,1,0x10,"ADS7138: 3V3PDS, 1V8PDS, VBIAS0..4",Current C++ cached monitor
+PL monitor,1,0x17,"ADS7138: 1V8A, 3V3A, -5VA",Current C++ cached monitor
+PL service,2,0x12,PJT004A0X43 3VD3 regulator,PMBus
+PL service,2,0x16,PJT004A0X43 2VA1 regulator,PMBus
+PL service,2,0x32,PJT004A0X43 3VA6 regulator,PMBus
+PL service,2,0x36,PJT004A0X43 1VD8 regulator,PMBus
+PL service,2,0x70,Timing clock generator,Sanity read 0xE6 == 0x06 in current preflight
+PL service,2,0x71,Mezzanine I2C mux/expander,Selects AFE0..4 downstream branches
+PL service,2,0x72,SFP I2C/GPIO expander,Identity/DOM and sideband design surface
+HD mezz downstream,behind 0x71,0x40,INA232 3.3 V monitor,Per AFE branch
+HD mezz downstream,behind 0x71,0x41,TCA9536 power GPIO,Per AFE branch
+HD mezz downstream,behind 0x71,0x42,INA232 5 V monitor,Per AFE branch

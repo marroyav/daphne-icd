@@ -20,6 +20,15 @@ Use `latexmk` (recommended):
 latexmk -pdf main.tex
 ```
 
+## DAPHNE interface data
+
+The proposed revision 8 review baseline includes the DAPHNE variable-intake
+workbook, its OPC-UA control-policy table, and diff-friendly worksheet exports
+under `interface-data/daphne/`. These are draft interface-review artifacts;
+they do not replace the DAQ configuration source in DUNE-DAQ
+`daphnemodules`, an approved Slow Controls configuration, or the final
+project-specific OPC-UA NodeSet.
+
 ## Structure
 
 - `main.tex` — entry point (cernatlasnote class)
@@ -35,6 +44,8 @@ latexmk -pdf main.tex
 - `tables/header_longtable.tex` — header field table (auto-generated from Excel)
 - `tables/payload_longtable.tex` — payload field table (auto-generated from Excel)
 - `tables/frame_decoder_map.csv` — machine-readable decoder map
+- `interface-data/daphne/` — proposed DAPHNE variable registry, control policy,
+  provenance, checksums, and text exports
 
 ## Notes
 

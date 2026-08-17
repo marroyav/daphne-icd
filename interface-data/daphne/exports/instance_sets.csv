@@ -1,0 +1,14 @@
+Placeholder,Entity,Allowed/expected instances,Source of truth
+{BoardId},DAPHNE board,One instance per installed board from HWDB; approximately 150 HD and 42 VD endpoints are described by Interface2 v7.,HWDB component/install records
+{Afe},AFE block,0..4,DAPHNE hardware/protobuf
+{Channel},Readout channel,HD: 0..39; VD: 0..31. Do not instantiate absent VD channels.,HWDB channel map + detector profile
+{Fan},Fan,0..1,FpgaRegDict fanReadSpeed_0/1
+{Interface},Linux network interface,Baseline eth0; add only deployed/managed interfaces.,deployment/network inventory
+{DataLink},10 GbE readout lane,Provisioned subset of 0..3,HWDB/link configuration
+{Sfp},SFP role,"timing, ccm, data0..data3 as physically provisioned",HWDB + schematic
+{Bus},I2C bus,Expected Linux buses 1 and 2; resolve stable role rather than assuming the numeric bus forever.,device tree + board service
+{Address},I2C address,Allow-listed expected devices plus discovered registered devices.,status snapshot
+{Device},SPI device,current-monitor /dev/spidev3.0 baseline,device tree + preflight
+{Rail},PMBus rail,"3VD3@0x12, 2VA1@0x16, 3VA6@0x32, 1VD8@0x36 on the PL I2C bus",Daphne I2C driver / Rust collector
+{Sensor},Temperature sensor,"Linux thermal zones, hwmon sensors, carrier MCP9808, PMBus regulator temperatures, and DOM-capable SFPs after allow-list review.",status collector + hardware inventory
+{Service},Required service,"firmware.service, clockchip.service, endpoint.service, hermes.service, daphne.service, daphne-boot-ok.service; remoteproc/RPU entries",PetaLinux service chain

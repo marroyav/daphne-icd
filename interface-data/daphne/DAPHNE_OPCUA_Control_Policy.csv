@@ -1,0 +1,22 @@
+Operation,NodeId pattern,Control owner,Allowed roles,Implementation status,Backend mapping,Executable,Input contract,Output contract
+RequestSafeState,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.RequestSafeState,Slow Controls / DPS,"sc,dps,expert",REQUIRED PRODUCTION,,false,JSON request object,JSON response object
+AcknowledgeRecovery,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.AcknowledgeRecovery,Slow Controls,"sc,expert",REQUIRED PRODUCTION,,false,JSON request object,JSON response object
+ConfigureRun,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ConfigureRun,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_CONFIGURE_FE_REQ,true,JSON request object,JSON response object
+ConfigureClocks,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ConfigureClocks,DAQ / DTS,"daq,dts,expert",CURRENT PROTOBUF,MT2_CONFIGURE_CLKS_REQ,true,JSON request object,JSON response object
+ConfigureFrontend,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ConfigureFrontend,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_CONFIGURE_FE_REQ,true,JSON request object,JSON response object
+SetControlledBias,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SetControlledBias,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_WRITE_VBIAS_CONTROL_REQ,true,JSON request object,JSON response object
+SetAfePowerState,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SetAfePowerState,Slow Controls,"sc,expert",CURRENT PROTOBUF,MT2_SET_AFE_POWERSTATE_REQ,true,JSON request object,JSON response object
+ResetAfe,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ResetAfe,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_DO_AFE_RESET_REQ,true,JSON request object,JSON response object
+AlignAfes,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.AlignAfes,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_ALIGN_AFE_REQ,true,JSON request object,JSON response object
+SetHdMezzPowerStates,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SetHdMezzPowerStates,Slow Controls,"sc,expert",CURRENT PROTOBUF,,false,JSON request object,JSON response object
+ConfigureHdMezzProtection,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ConfigureHdMezzProtection,Slow Controls,"sc,expert",EXCLUDED FROM ROUTINE DCS,,false,JSON request object,JSON response object
+ClearHdMezzAlert,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ClearHdMezzAlert,Slow Controls,"sc,expert",CURRENT PROTOBUF,,false,JSON request object,JSON response object
+SetFanOverride,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SetFanOverride,Slow Controls,"sc,expert",EXCLUDED FROM ROUTINE DCS,,false,JSON request object,JSON response object
+ScrapEndpoint,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.ScrapEndpoint,DAQ,"daq,expert",CURRENT PROTOBUF,,false,JSON request object,JSON response object
+SoftwareTrigger,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SoftwareTrigger,DAQ,"daq,expert",CURRENT PROTOBUF,MT2_DO_SOFTWARE_TRIGGER_REQ,true,JSON request object,JSON response object
+SetSpyTriggerControl,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.SetSpyTriggerControl,DAQ,"daq,expert",REQUIRED PRODUCTION,,false,JSON request object,JSON response object
+DumpSpyBuffers,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.DumpSpyBuffers,DAQ,"daq,expert",EXCLUDED FROM ROUTINE DCS,MT2_DUMP_SPYBUFFER_REQ,true,JSON request object,JSON response object
+WriteAfeRegister,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.WriteAfeRegister,PDS expert (maintenance only),expert,EXCLUDED FROM ROUTINE DCS,MT2_WRITE_AFE_REG_REQ,true,JSON request object,JSON response object
+WriteMultipleFpgaRegisters,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.WriteMultipleFpgaRegisters,PDS expert (maintenance only),expert,EXCLUDED FROM ROUTINE DCS,,false,JSON request object,JSON response object
+FirmwareUpdate,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.FirmwareUpdate,Slow Controls,"sc,expert",EXCLUDED FROM ROUTINE DCS,,false,JSON request object,JSON response object
+RestartBoardService,nsu=urn:dune:pds:daphne;s=DAPHNE.Boards.{BoardId}.Operations.Methods.RestartBoardService,Slow Controls,"sc,expert",REQUIRED PRODUCTION,,false,JSON request object,JSON response object

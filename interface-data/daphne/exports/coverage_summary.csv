@@ -1,0 +1,24 @@
+Metric,Count
+CURRENT OPC-UA POC,14
+CURRENT PROTOBUF,105
+LOCAL READABLE,44
+REQUIRED PRODUCTION,210
+EXPERT/DAQ ONLY,0
+EXCLUDED FROM ROUTINE DCS,6
+Read-only patterns,358
+Write-only method patterns,21
+Control owner: DAQ,99
+Control owner: DAQ / DTS,27
+Control owner: Slow Controls,195
+Control owner: Slow Controls / DPS,6
+Control owner: PDS expert (maintenance only),2
+Control owner: Board service (shared audit),15
+Control owner: HWDB / network authority; SC monitors,17
+Control owner: PDS OPC-UA gateway service,18
+Total tag patterns,379
+Raw register patterns,43
+Protocol families,19
+Operations constraints,9
+,
+Interpretation,"Counts are variable patterns, not installed tag instances. {BoardId}/{Afe}/{Channel}/other placeholders are expanded from controlled inventories."
+Approval blocker,"Alarm/interlock numeric limits, production certificates/identities, final endpoints, complete gateware-health block, monitoring cadence, and the detailed DAQ-SC-DPS permit/failure state machine require joint sign-off. The ownership split is fixed by this revision."

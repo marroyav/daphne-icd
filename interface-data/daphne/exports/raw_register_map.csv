@@ -1,0 +1,44 @@
+Register pattern,Logical/physical address,Fields,Bits,Access,Production treatment
+afeGlobalControl,0x00000000,RESET,0,R/W,Canonical AFE.Global.ResetAsserted; DAQ configuration reset
+afeGlobalControl,0x00000000,POWERSTATE,1,R/W,Canonical AFE.Global.PowerState; SC-owned energization
+afeGlobalControl,0x00000000,BUSY/BUSY_AFE0/BUSY_AFE12/BUSY_AFE34,2..4,R,Publish typed busy states
+afeControl_{Afe},0x00000004 + 0xC*AFE,DATA,0..23,R/W,Raw AFE register transport; expert only
+afeDacTrim_{Afe},0x00000008 + 0xC*AFE,DATA,0..31,R/W,Use typed per-channel trim nodes
+afeDacOffset_{Afe},0x0000000C + 0xC*AFE,DATA,0..31,R/W,Use typed per-channel offset nodes
+dacGainBiasControl,0x0C000000,"BUSY, GO",0..1,R/W,Publish busy; hide raw GO
+dacGainBiasU50/U53/U5,0x0C000004..0x0C00000C,"DATA, BUFFER, GAIN, CHANNEL",0..15,R/W,Raw DAC control; expert only
+timestamp{0..3},0x1002D000..0x10030000,VALUE,0..15,R,Assemble typed Timing.Timestamp
+endpointClockControl,0x04000000 (phys 0x84000000),"SOFT_RESET, MMCM_RESET, CLOCK_SOURCE",0..2,R/W,Typed DAQ/DTS timing configuration and reset
+endpointClockStatus,0x04000004 (phys 0x84000004),"MMCM0_LOCKED, MMCM1_LOCKED",0..1,R,Current status API
+endpointControl,0x04000008,"ADDRESS, RESET",0..16,R/W,Typed DAQ/DTS endpoint address and reset
+endpointStatus,0x0400000C (phys 0x8400000C),"FSM_STATUS, TIMESTAMP_OK",0..4,R,Current status/preflight
+frontendControl,0x08000000,"DELAYCTRL_RESET, SERDES_RESET, DELAY_EN_VTC",0..2,R/W,Expert/DAQ alignment only
+frontendStatus,0x08000004,DELAYCTRL_READY,0,R,Canonical alignment readiness
+frontendTrigger,0x08000008,GO,0,W,Software trigger; DAQ/expert
+frontendDelay_{Afe},0x0800000C + 4*AFE,DELAY,0..8,R/W,Canonical AFE.AlignmentDelay
+frontendBitslip_{Afe},0x08000020 + 4*AFE,BITSLIP,0..3,R/W,Canonical AFE.AlignmentBitslip
+spyTriggerControl,0x08000034 (phys 0x88000034),"SOURCE_SELECTOR, INHIBIT","[1:0], 2",R/W,"Publish typed readbacks. Guard writes as one atomic DAQ/expert operation; reset 0x3. Source 0 software, 1 external, 2 timing/ad-hoc, 3 legacy OR/all."
+spyBuffer_{Afe}_{LocalChannel},0x10000000 + 0x9000*AFE + 0x1000*channel,DATA/DATAL/DATAH,0..31,R,"Diagnostic payload, not DCS time-series data"
+tenGigabitSender,0x18000000,DATA,0..3,R/W,Publish decoded readout-lane state; raw write expert only
+fanControl,0x14000000,FAN_CTRL,0..7,R/W,Local automatic control / maintenance override
+fanReadSpeed_0/1,0x14000004/08,SPEED,0..11,R,Canonical fan tach/raw and validated RPM
+biasEnable,0x1400000C,ENABLE,0,R/W,SC-owned bias energization; DAQ owns the numerical target
+muxEnable,0x14000010,"ENABLE0, ENABLE1",0..1,R/W,Internal driver state; do not expose raw write
+muxAddress,0x14000014,ADDRESS,0..1,R/W,Internal driver state; do not expose raw write
+LED,0x14000018,LED,0..5,R/W,Commissioning only
+GIT,0x1400001C,GIT,0..27,R,Canonical Firmware.GitCommit
+triggerEnableLow/High,0x14000020/24 (phys 0x94000020/24),DATA,40-bit mask,R/W,Canonical per-channel TriggerEnabled
+idLink/idSlot/idCrate/idDetector/idVersion,0x14000028..38,ID,field-specific,R/W,Identity readback; writes only via deployment/configure
+adHocTriggerCommand,0x1400003C,VALUE,0..7,W,DAQ/expert only
+selfTriggerFullConfigLow/High,0x14000040/44,VALUE,64-bit,R/W,Typed run configuration preferred
+matchingTriggerTemplate_{0..15},0x14000048 + 4*i,VALUE,0..27,R/W,DAQ calibration/configuration; version and read back
+triggerCounters_{Channel},0xA0010000 + 0x20*channel,"threshold, record, busy, full",documented offsets,R,Current MT2_READ_TRIGGER_COUNTERS
+selfTriggerStuff,0x94000000 region,"config, delay, filter select, compensator, inverter",documented offsets,R/W,Typed run configuration preferred
+DTS command decoder,control bus 0x60..0x67,tcmd_0..tcmd_7,8-bit each,R/W,DAQ/DTS-owned command-to-output mapping; EDMS 2395364 v2
+DTS endpoint command,control bus 0x70,"disable/enable TX, set address, set coarse delay, resync, reset",bits 0..5,W,DAQ/DTS-owned endpoint control; timing master has bus precedence
+DTS endpoint status,control bus 0x71,"FSM status, phase-update complete, transmitter enabled",bits 0..5,R,Publish to DAQ and SC; EDMS 2395364 v2
+DTS endpoint deskew,control bus 0x72..0x73,"coarse delay, fine clock phase","bits 3..0, 15..4",R/W,DAQ/DTS-owned deskew configuration
+DTS endpoint address,control bus 0x74..0x75,unique endpoint address,16-bit,R/W,DAQ/DTS-owned endpoint identity
+DTS protocol errors,control bus 0x76,soft protocol-error count; write clears,8-bit,R/W,DAQ/DTS owns clear; DAQ and SC monitor
+DTS timestamp check,control bus 0x77,timestamp set/check FIFO value,8-bit transaction,R/W,DAQ/DTS-owned timing operation
+DTS endpoint version,control bus 0x78..0x7B,endpoint version,32-bit,R,Publish to DAQ and SC

@@ -1,0 +1,20 @@
+Message/operation family,Class,Contents,Normal authority,Status,Notes
+MT2_READ_TEST_REG,Read,Service heartbeat/test value,Read-only fan-out,CURRENT OPC-UA POC,TestRegResponse
+MT2_READ_GENERAL_INFO,Read,"VBIAS0..4, selected rails, temperature field",Read-only fan-out,CURRENT OPC-UA POC,GeneralInfo; current C++ handler does not populate temperature
+MT2_READ_SLOW_CONTROL_STATUS,Read,"Firmware, RPU, I2C, clocks, temperatures, rails, services, errors",Read-only fan-out,CURRENT PROTOBUF,Rust additive status API
+MT2_READ_TRIGGER_COUNTERS,Read,Per-channel threshold/record/busy/full,Read-only; DAQ context,CURRENT PROTOBUF,40 channels
+READ_AFE_REG/VGAIN/BIAS/TRIM/OFFSET/VBIAS,Read,AFE and channel configuration readbacks,Read-only; serialized,CURRENT PROTOBUF,Low-level protobuf
+READ_CURRENT_MONITOR,Read,Per-channel current monitor raw value,Read-only; serialized,CURRENT PROTOBUF,Low-level protobuf/SPI
+READ_BIAS_VOLTAGE_MONITOR,Read,Per-AFE bias monitor,Read-only; serialized,CURRENT PROTOBUF,Low-level protobuf/I2C cache
+READ_HDMEZZ_STATUS/CONFIG,Read,"Per-AFE HD-mezz power, measurements, alerts, calibration config",Read-only; cached,CURRENT PROTOBUF,Low-level protobuf
+CONFIGURE_FE,Backend write,Complete AFE/channel/run configuration,DAQ,CURRENT PROTOBUF,Mapped from DAQ-role OPC-UA ConfigureRun/ConfigureFrontend
+CONFIGURE_CLKS,Backend write,"Endpoint address, source and bounded resets",DAQ/DTS,CURRENT PROTOBUF,Mapped from DAQ/DTS-role OPC-UA ConfigureClocks
+WRITE_AFE_BIAS_CONTROLLED_SET,Backend write,Closed-loop numerical bias target,DAQ,CURRENT PROTOBUF,Mapped from DAQ-role OPC-UA SetControlledBias; requires SC/DPS permit
+SET_AFE_POWERSTATE,Backend write,AFE global power enable/state,Slow Controls,CURRENT PROTOBUF,Mapped from SC-role OPC-UA SetAfePowerState
+SET_HDMEZZ_POWER_STATES,Write,Paired 5 V/3.3 V request,Slow Controls,CURRENT PROTOBUF,Never split into independent writes
+CONFIGURE_HDMEZZ_BLOCK,Write,Shunt/current/protection configuration,Slow Controls with PDS expert role,CURRENT PROTOBUF,SC maintenance only
+ALIGN_AFE,Write,Delay/bitslip alignment,DAQ/expert,CURRENT PROTOBUF,Not while running
+DUMP_SPYBUFFER,Diagnostic,Waveform data transfer,DAQ/expert,EXCLUDED FROM ROUTINE DCS,Not a DCS historian path
+DO_SOFTWARE_TRIGGER,Diagnostic,Ad hoc trigger,DAQ/expert,EXCLUDED FROM ROUTINE DCS,Not routine DCS
+SET_SPY_TRIGGER_CONTROL,Backend write,Atomic spy-buffer source selector and inhibit,DAQ,REQUIRED PRODUCTION,"DAQ-role OPC-UA method; backend adapter is not yet available in the reviewed Protobuf. Inhibit, wait >=5 acquisition clocks, select, wait >=5 clocks, then release inhibit when requested."
+WRITE_MULTIPLE_REGISTER,Raw write,Arbitrary address/value list,PDS expert,EXCLUDED FROM ROUTINE DCS,No production Ignition exposure

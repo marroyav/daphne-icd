@@ -1,0 +1,48 @@
+schema_version: 1
+
+artifact:
+  id: "dune-pds-daphne-variable-intake"
+  title: "DAPHNE DCS full variable intake"
+  version: "2026-08-13"
+  status: "proposed-v8-review-input"
+  approval: "not-approved-for-operations"
+  prepared_date: "2026-08-13"
+  added_to_interface2: "2026-08-17"
+  opcua_namespace_uri: "urn:dune:pds:daphne"
+
+content:
+  workbook: "DAPHNE_DCS_Full_Variable_Intake.xlsx"
+  workbook_sha256: "146094dd8fcc5db08ab9ca2f9e1dac53998facd37a63ec397495f84aba33cb76"
+  worksheets: 11
+  variable_patterns: 379
+  control_policy: "DAPHNE_OPCUA_Control_Policy.csv"
+  control_policy_sha256: "e91d7f846dc75260a72d1e1d6815b25e241739224a85649537b3a860c0c709a9"
+  control_operations: 21
+  text_exports: "exports/"
+  integrity_file: "SHA256SUMS"
+
+role:
+  workbook: "interface intake and review artifact; not runtime configuration"
+  daq_configuration_source: "DUNE-DAQ framework and daphnemodules"
+  slow_controls_scope: "equipment lifecycle, power, availability, monitoring, protection, and safe-state actions"
+  shared_contract: "jointly approved NodeSet, mappings, permissions, state guards, limits, and conformance tests"
+
+provenance:
+  generation_package: "DAPHNE Slow Controls and DAQ-PDS interface working package"
+  generator: "build_daphne_intake.py"
+  source_audit: "exports/source_audit.csv"
+  policy_source: "workbook sheet OPC-UA Control Policy"
+
+references:
+  pds_daq_icd:
+    edms_document: 2088726
+    baseline: "v7.0"
+  sc_pds_icd:
+    edms_document: 3309688
+    baseline: "draft v1"
+
+known_gaps:
+  - "The final project-specific OPC-UA NodeSet XML is not yet included."
+  - "Endpoint assignments and deployment topology require approval."
+  - "Numeric limits, alarm thresholds, permit polarity, and permit scope require approval."
+  - "The authority and detector-state machine requires joint PDS, DAQ, SC, DTS, and DPS approval."
