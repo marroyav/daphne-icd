@@ -3,21 +3,25 @@ schema_version: 1
 artifact:
   id: "dune-pds-daphne-variable-intake"
   title: "DAPHNE DCS full variable intake"
-  version: "2026-08-13"
+  version: "2026-08-17"
   status: "proposed-v8-review-input"
   approval: "not-approved-for-operations"
-  prepared_date: "2026-08-13"
+  prepared_date: "2026-08-17"
   added_to_interface2: "2026-08-17"
   opcua_namespace_uri: "urn:dune:pds:daphne"
 
 content:
   workbook: "DAPHNE_DCS_Full_Variable_Intake.xlsx"
-  workbook_sha256: "146094dd8fcc5db08ab9ca2f9e1dac53998facd37a63ec397495f84aba33cb76"
-  worksheets: 11
-  variable_patterns: 379
+  workbook_sha256: "87f872595e5ddde5e09fe2930903811e6538472d8f17d461a5e9b1a2bec0077a"
+  worksheets: 12
+  variable_patterns: 383
   control_policy: "DAPHNE_OPCUA_Control_Policy.csv"
   control_policy_sha256: "e91d7f846dc75260a72d1e1d6815b25e241739224a85649537b3a860c0c709a9"
   control_operations: 21
+  np02_compatibility_pairs: 15
+  np02_incompatible_pairs: 6
+  np02_compatible_pairs: 5
+  np02_probably_compatible_pairs: 4
   text_exports: "exports/"
   integrity_file: "SHA256SUMS"
 
@@ -33,6 +37,16 @@ provenance:
   source_audit: "exports/source_audit.csv"
   policy_source: "workbook sheet OPC-UA Control Policy"
 
+external_evidence:
+  np02_compatibility_matrix:
+    filename: "NP02interlockMatrix.pdf"
+    pdf_creation_date: "2025-03-10"
+    supplied_date: "2026-08-17"
+    sha256: "0e4027da22fb88182626a7baff22cf632d1e72a3183d93f39b743ca2c109cfa9"
+    bundled_in_repository: false
+    role: "historical NP02 activation-compatibility evidence; not an approved FD cause-and-effect matrix"
+    context_url: "https://indico.cern.ch/event/1522253/contributions/6404491/attachments/3026376/5341354/TB_Feb25.pdf"
+
 references:
   pds_daq_icd:
     edms_document: 2088726
@@ -46,3 +60,6 @@ known_gaps:
   - "Endpoint assignments and deployment topology require approval."
   - "Numeric limits, alarm thresholds, permit polarity, and permit scope require approval."
   - "The authority and detector-state machine requires joint PDS, DAQ, SC, DTS, and DPS approval."
+  - "The NP02 source does not define the scope of LEDs, signal paths, timing, priority, already-active response, recovery, or approval."
+  - "NP02 PDs-PrM is probably compatible, conflicting with the SC-PDS draft v1 requirement to remove PDS SiPM bias while PrM is active."
+  - "NP02 PDs-IoL is incompatible but the SC-PDS draft v1 does not state the corresponding ionisation-laser constraint."
