@@ -1,12 +1,12 @@
 \section{Physical Interfaces}
 
 \subsection{Timing Interface (DTS)}
-\label{sec:timing}
+\label{sec:physical-timing}
 
 \paragraph{Physical layer.}
 % Timing and synchronization are distributed over single-mode OS2 fiber using bidirectional 1000BASE-BX-20 SFPs:
 % \begin{itemize}[nosep]
-%   \item DAQ master: TX \SI{1310}{nm}, RX \SI{1550}{nm}; Endpoints use the complementary wavelengths.
+%   \item PDS timing endpoints: TX \SI{1550}{nm}, RX \SI{1490}{nm}, as specified by EDMS 2580777; the timing-master optics are complementary.
 %   \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
 %   \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
 % \end{itemize}
@@ -26,10 +26,10 @@ For final FD timing endpoints, the guide specifies 80\,km 1000BASE-BX bidirectio
 SFPs; PDS DAPHNE endpoint SFPs should meet the following endpoint-side optical
 requirements:
 \begin{itemize}[nosep]
-  \item DAQ master: TX \SI{1310}{nm}, RX \SI{1550}{nm}; Endpoints use the complementary wavelengths.
+  \item PDS timing endpoints: TX \SI{1550}{nm}, RX \SI{1490}{nm}, as specified by EDMS 2580777.
+  \item Associated timing-master optics: TX \SI{1490}{nm}, RX \SI{1550}{nm}.
   \item Connectors: LC on both ends; one LC fiber per endpoint (DAPHNE FEB and LCM).
   \item Fan-out: last stage on the DAQ mezzanine or mini-racks; PDS owns fibers from the last fan-out to endpoints.
-  \item Wavelengths: TX \SI{1550}{nm}, RX \SI{1490}{nm}.
   % \item Optical budget: minimum transmit power \(>\)-2\,dBm and minimum receive power \(<\)-24\,dBm.
   \item Endpoint SFP minimum transmit launch power \(\ge\)-2\,dBm and receiver sensitivity \(\le\)-24\,dBm; with \SI{17}{dB} maximum passive optical network loss, this gives at least \SI{5}{dB} worst-case margin.
 
@@ -43,13 +43,13 @@ requirements:
 
 \paragraph{Startup, loss-of-lock, and recovery.}
 \begin{itemize}[nosep]
-  \item On power-up: endpoints wait for valid timing, report lock, then enable data transmission.
+  \item On power-up: endpoints wait for valid timing, report lock, then enable configuration. Spy-buffer and DAQ data transmission are enabled separately by the applicable control commands and run state.
   \item On loss-of-lock: flag packets as impacted; attempt auto-relock; report status via CCM; throttle/hold data if configured.
 \end{itemize}
 
 
 \subsection{Data Interface (10\,GbE Readout)}
-\label{sec:data}
+\label{sec:physical-data}
 
 \paragraph{Physical layer.}
 \begin{itemize}[nosep]
@@ -81,16 +81,16 @@ requirements:
 \paragraph{Physical/logical separation.}
 \begin{itemize}[nosep]
   \item Each DAPHNE and each LCM provides a dedicated 1\,GbE SFP link reserved for CCM (no data readout on this link).
+  \item DAQ and SC are authenticated OPC-UA clients of a shared PDS gateway. The gateway exposes a versioned, typed OPC-UA information model and is the sole routine client of the DAPHNE board services.
+  \item The DAQ source configuration remains versioned in the DUNE-DAQ framework, including the DAPHNE schema in \texttt{daphnemodules}. The gateway implements a reviewed mapping from that model to OPC-UA variables and methods and then to the board's versioned Protobuf/ZMQ interface. Client applications shall not maintain divergent copies of the backend messages or connect directly to the board service.
+  \item OPC-UA roles and method-level access control preserve the DAQ/SC ownership split. A DAQ method invocation is translated and executed by the neutral gateway; it is not forwarded to, approved by, or executed on behalf of DAQ by SC.
   \item Fibers up to the PDS mini-rack patch panels are provided by PDS; continuation and active switching are coordinated with DAQ and Technical Coordination.
 \end{itemize}
 
 \paragraph{Functional requirements.}
 \begin{itemize}[nosep]
-  \item End-to-end configuration of firmware parameters (AFE, trigger/self-trigger, packetization, thresholds, timing trims) with positive acknowledgements.
-  \item Health monitoring: link state (timing, data, CCM), temperature/voltage, firmware/bitstream IDs, error counters, throttling statistics.
-  \item Safe firmware updates (DAPHNE and LCM): advertise “firmware path unavailable” flag to SC/CCM during reprogramming.
-  \item Coexistence with Slow Controls (if used). Multiple controllers must be serialized or brokered to avoid races; PDS is responsible for concurrency policy.
+  \item DAQ owns the configuration that determines acquired data: timing endpoint and partition settings, AFE operating values, per-channel settings, trigger and spy-buffer selection, packetization, and readout links.
+  \item SC owns equipment lifecycle and availability: board and AFE power enable, service lifecycle, controlled firmware deployment, management network, fans, rail and mezzanine power, environmental monitoring, and safe-state actions. PDS/DAQ change control owns qualification of firmware and its data-taking compatibility; SC deployment does not select an unapproved data-taking image.
+  \item Health monitoring includes timing, data and CCM link state; temperature, voltage, current and fan status; service, firmware and bitstream identities; SFP DOM/LOS and I2C state; error counters; configuration readback; trigger state; and throttling statistics.
+  \item The OPC-UA gateway and board service shall enforce disjoint write ownership, serialize accepted mutations, apply run-state guards, distinguish accepted, applied, and verified results, and give DPS inhibit or SC safe-state action priority over data-taking configuration.
 \end{itemize}
-
-
-

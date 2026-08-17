@@ -10,6 +10,7 @@
 \usepackage{longtable}
 \usepackage{siunitx}
 \usepackage{enumitem}
+\setlength{\emergencystretch}{3em}
 % \usepackage[left]{lineno}
 \hypersetup{hidelinks}
 % \linenumbers
@@ -19,7 +20,7 @@
 \date{\today}
 \EDMSDocNo{}
 \EDMSDocId{2088726}
-\draftversion{7.0}
+\draftversion{8.0}
 \documentlabel{\today}
 \DocAuthors{Manuel Arroyave}
 \DocCheckedBy{Manuel Arroyave\\ Adam Barcock\\ Paolo Carniti\\  Alessandro Thea\\ Stoyan Trilov}
@@ -34,6 +35,8 @@
 \vfill
 \makereviewtable
 \clearpage
+\input{sections/00_revision_summary.tex}
+\clearpage
 % \linenumbers
 \tableofcontents
 \clearpage
@@ -42,6 +45,7 @@
 \input{sections/03_systems_overview.tex}
 \input{sections/04_interfaces.tex}
 \input{sections/05_data_format.tex}
+\input{sections/06_ownership_verification.tex}
 % \input{sections/05a_performance_estimates.tex}
 % \input{sections/05b_interfaces_matrix.tex}
 % \input{sections/06_requirements.tex}

@@ -1,0 +1,36 @@
+\section{Configuration-boundary verification}
+\label{sec:ownership-verification}
+
+Approval of the revision 8 control interface requires the following end-to-end tests. A
+test passes only when the OPC-UA result, gateway audit record, board readback, DAQ run
+state, and SC equipment state agree. Negative results shall identify the rejected field,
+role, state guard, or permit; a transport acknowledgement alone is not evidence that a
+setting was applied.
+
+\begin{longtable}{@{}p{2.2cm}p{8.2cm}p{4.4cm}@{}}
+\toprule
+\textbf{Test ID} & \textbf{Test and acceptance criterion} & \textbf{Primary evidence} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Test ID} & \textbf{Test and acceptance criterion} & \textbf{Primary evidence} \\
+\midrule
+\endhead
+CFG-01 & Trace every data-taking field in the controlled \texttt{daphnemodules} revision to exactly one typed DAQ-role OPC-UA field or method and to its effective board readback. Missing, duplicated, or silently transformed fields fail the test. & Versioned mapping table, configuration hash, readback comparison. \\
+CFG-02 & Attempt DAQ writes to SC-owned power, service, network, fan, and safe-state fields, and SC writes to DAQ-owned timing, AFE/channel, bias-target, trigger, capture, and readout fields. Every attempt is rejected before board mutation. & OPC-UA status, unchanged readback, audit log. \\
+CFG-03 & Issue overlapping DAQ, SC, and expert requests. The gateway admits at most one ordered board mutation at a time; priority and cancellation are deterministic, and every request reaches one terminal result. & Correlation IDs, ordered audit log, board trace. \\
+CFG-04 & Request valid and invalid numerical bias targets with bias disabled, permits absent, permits removed in flight, and permits valid. DAQ cannot energize bias; SC cannot change the numerical target; permit loss safely disables or ramps down and invalidates readiness. & Target/enable readbacks, permit history, trip trace. \\
+CFG-05 & Exercise SC safe state, DPS trip, board reboot, gateway restart, network interruption, and partial command timeout. Data taking cannot resume from assumed state; reconciliation is explicit and DAQ applies and verifies a fresh configuration. & State-transition log, generation/hash change, Run Control evidence. \\
+CFG-06 & Verify accepted/applied/verified result semantics, bounded timeouts, retry and idempotency behavior, and stale-request rejection. A repeated request cannot cause an unintended second transition. & Method-result schema, fault injection, audit log. \\
+CFG-07 & Compare OPC-UA subscriptions and historian records with board sources at the approved cadence. Values carry source timestamp, quality, unit, range, and staleness; monitoring access never grants write access. & Subscription capture, historian query, role test. \\
+CFG-08 & Execute an LCM calibration with external power available and unavailable, valid and invalid DTS group masks, and an SC/DPS inhibit. DAQ/PDS owns pulse and capture settings; SC supplies readiness and protection only. & Correlated LCM/DTS/DAPHNE trace and tagged data. \\
+CFG-09 & Verify Power-over-Fiber and other external services using the same principle: SC controls infrastructure power and health; DAQ controls only data-taking settings. Interlocks remain effective during all DAQ states. & Interface-state matrix and protection test. \\
+CFG-10 & At the planned board/channel scale, verify reconnect behavior, subscription load, command latency, rate limiting, authorization, certificate handling, and complete audit attribution. No loss of protection priority or cross-role ownership is permitted. & Load/security report and acceptance thresholds. \\
+\bottomrule
+\end{longtable}
+
+Before release, each row shall identify the responsible consortium, test environment,
+numeric acceptance threshold, evidence location, and approval status. Items described as
+``not yet represented'', ``production extension'', ``target'', or ``to be agreed'' elsewhere
+in this document remain open implementation or validation actions and shall not be treated
+as deployed capability.

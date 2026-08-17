@@ -1,8 +1,9 @@
 
 \section{Timing and Synchronization}
 \label{sec:timing}
-Timing and synchronization are distributed via the \gls{dts} over OS2 single-mode fiber using 1000Base-BX optics
-(TX\,1310\,nm/RX\,1550\,nm at the \gls{daq} side; reciprocal at endpoints). The downlink is continuous and endpoints
+Timing and synchronization are distributed via the \gls{dts} over OS2 single-mode fiber using 1000Base-BX optics.
+As specified for FD timing endpoints in EDMS 2580777, the endpoint optics transmit at 1550\,nm and receive at 1490\,nm;
+the associated timing-master optics are complementary. The downlink is continuous and endpoints
 must recover cleanly from interruptions. Uplink provides a minimal protocol subset for status and delay tuning.
 
 \subsection{Clocking}

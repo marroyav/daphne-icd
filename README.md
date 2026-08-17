@@ -2,6 +2,16 @@
 
 This folder contains a LaTeX project that builds an ICD for the PDS–DAQ interface.
 
+## Version status
+
+- `v7.0` is the controlled DAQ–PDS baseline dated 10 June 2026.
+- `proposed-v8` contains the draft revision that fixes the DAQ/Slow Controls
+  configuration boundary. DAQ owns configuration that determines acquired data;
+  Slow Controls owns equipment lifecycle, power, availability, monitoring, and
+  protection. Both use authenticated roles through one shared PDS OPC-UA gateway.
+  This branch remains proposed until its NodeSet/mapping, limits, state guards,
+  and conformance tests receive joint PDS, DAQ, SC, and DPS approval.
+
 ## Build
 
 Use `latexmk` (recommended):

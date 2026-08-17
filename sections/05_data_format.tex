@@ -1,7 +1,7 @@
 \section{Protocols and data formats}
 
 \subsection{Timing Interface (DTS)}
-\label{sec:timing}
+\label{sec:protocol-timing}
 
 Timing and synchronization are distributed by the DUNE Timing System (DTS) using the DTS protocol and message model described in the DTS Requirements and Protocol documents.\footnote{\url{https://edms.cern.ch/document/2209895}} The timing master provides a common 62.5\,MHz clock and timestamp to all endpoints within a detector module , and delivers both fixed--length and variable--length timing messages.
 
@@ -22,11 +22,19 @@ The DTS master shall generate periodic timestamp messages to facilitate rapid re
 
 \subsubsection{Operations and Interfaces}
 \label{subsec:timing-ops}
+\label{subsec:configuration-path}
 
 \begin{itemize}
-  \item\textbf{Configuration Path.} All timing-related endpoint configuration (e.g.\ group masks, delay trims, status polling cadence) shall be commanded via CCM using Protobuf messages; the timing command itself is delivered by the DTS, not over the CCM link.
-  \item\textbf{Calibration Use.} Calibration sequences shall be orchestrated such that the DTS synchronous command simultaneously triggers LCM LED emission and DAPHNE waveform capture; DAPHNE readout headers shall mark these events as calibration.
-  \item\textbf{Health and Recovery.} Loss-of-lock or alignment faults detected at an endpoint shall be flagged in data, reported via CCM, and subjected to auto-recovery. Persistent faults are escalated for CCM-driven mitigation without perturbing locked endpoints.
+  \item\textbf{Configuration Path.} Each endpoint has one physical CCM Ethernet interface to its board service. DAQ and SC communicate with a shared, neutral PDS OPC-UA gateway rather than connecting to DAPHNE directly. The DAQ configuration source remains the versioned DUNE-DAQ framework and its \texttt{daphnemodules} schema; the gateway exposes a controlled OPC-UA projection and alone translates its typed variables and methods to each board's compatible Protobuf/ZMQ interface. The OPC-UA NodeSet and mapping shall be generated or reviewed against the controlled DAQ model and shall not become an independent SC configuration schema. DAQ owns every value that determines data taking; SC owns the equipment functions that keep the endpoint powered, available, monitored, and protected. The gateway is an integration and command-serialization service, not an SC handoff: SC does not receive, approve, modify, or execute DAQ configuration requests.
+  \begin{itemize}[nosep]
+    \item \textbf{DAQ-owned timing configuration.} DAQ/DTS owns the endpoint address, coarse and fine deskew, command-decoder mapping, timing group or partition assignment, resynchronization and endpoint reset, and the requested timing-transmitter state. The timing master retains precedence on the endpoint control bus as required by EDMS 2395364. Endpoint build generics such as system-clock frequency, external-PLL selection and divider are firmware-release parameters, not run-time SC settings; test-only force/skip generics shall not be enabled in production firmware.
+    \item \textbf{DAQ-owned DAPHNE configuration.} DAQ owns AFE and channel operating settings, including trim, offset, gain, attenuation, ADC/PGA/LNA fields, numerical bias targets, alignment, self-trigger threshold and masks, cross-correlation and trigger-primitive settings, compensator and inverter masks, full-stream selection, readout-link and packetization settings, software triggers, spy-buffer trigger source/inhibit, and diagnostic capture requests.
+    \item \textbf{SC-owned equipment configuration.} SC owns board and AFE power enable, bias energization and removal, HD-mezzanine and external rail power, service start/restart and availability, controlled firmware deployment, management-network settings, automatic fan/thermal operation, maintenance overrides, equipment alarms, and safe-state or recovery actions. PDS/DAQ change control owns firmware qualification, its configuration/data-format compatibility, and the approved image set. DPS may independently inhibit or remove permission.
+  \end{itemize}
+  Every request shall identify its authenticated OPC-UA role, detector or partition, affected board and channel scope, run type, configuration revision or hash, configuration generation, and correlation identifier. The gateway shall authorize the requested method and fields, evaluate operating-state and external-permit guards, translate them to the compatible board protocol, and serialize all accepted board mutations. Method results shall distinguish \emph{accepted}, \emph{applied}, and \emph{verified}; timeout, retry, idempotency, cancellation, and stale-generation behavior shall be specified per method. The board service shall independently reject invalid or unsafe requests. SC may revoke the equipment-ready permit or apply a safe state, but it shall not edit the DAQ configuration. After such an action, DAQ shall apply and verify a fresh run configuration through the gateway before data taking resumes.
+  \item\textbf{Bias boundary.} DAQ owns the numerical bias operating target because it is part of the data-taking profile. SC owns the power/bias enable, the external permits and limits that allow the target to be applied, and any protective ramp-down or disable. A DAQ target request without the required SC/DPS permit shall be rejected.
+  \item\textbf{Calibration Use.} DAQ shall orchestrate the calibration configuration through its OPC-UA role and the DTS synchronous command that triggers LCM LED emission and DAPHNE waveform capture. SC supplies equipment readiness and protection permits but does not execute the DAQ configuration. DAPHNE readout headers shall mark these events as calibration.
+  \item\textbf{Health and Recovery.} Loss-of-lock or alignment faults detected at an endpoint shall be flagged in data and reported to both DAQ and SC. Bounded firmware auto-recovery may proceed without perturbing locked endpoints. SC owns equipment recovery and the equipment-ready permit; DAQ owns reconfiguration of timing and data-taking parameters. DPS actions remain independent and authoritative.
 \end{itemize}
 
 \subsubsection{Data Header Integration}
@@ -43,7 +51,7 @@ Field encoding and bit allocation shall be specified in the PDS data format sect
 
 \subsection{Data Interface(UDP/10\,GbE Readout)}
 
-\label{sec:data}
+\label{sec:protocol-data}
 
 Data will be transmitted from the PDS to the DAQ using UDP packets and jumbo frames
 (\(\sim\)9000\,B MTU) over 10\,GbE Ethernet links, following the agreed PDS data format.
@@ -85,22 +93,36 @@ LCMs will adopt the same 10\,GbE UDP packet format.
 
 \subsection{CCM Protocols and Operations}
 
-All configuration, control, and monitoring of the DAPHNE and LCM modules shall be performed exclusively via the  (CCM) interface. The communication protocol is defined using Protocol Buffers (Protobuf) messages transmitted over the dedicated Ethernet control link. The following operations are supported in the DAPHNE Firmware:
+The client-facing configuration, control, and monitoring contract is the versioned PDS OPC-UA information model. DAQ, SC, and authorized expert applications use standard OPC-UA subscriptions, reads, and typed methods; they do not exchange DAPHNE Protobuf messages. The gateway maintains the DAPHNE Protobuf/ZMQ backend mapping and protocol compatibility for all boards. The DAQ source of truth remains the DUNE-DAQ configuration; location of a field in a low-level message does not assign operational ownership. The allocation below was checked against the DUNE Timing System Endpoint Integration Guide (\href{https://edms.cern.ch/document/2580777}{EDMS 2580777}), the endpoint firmware interface (\href{https://edms.cern.ch/document/2395364}{EDMS 2395364 v2}), and the \href{https://github.com/DUNE-DAQ/daphnemodules/tree/edf75a0c5f37cb6d1ef889723359e23e746ffe2b}{\texttt{daphnemodules} \texttt{develop} revision \texttt{edf75a0}}. OPC-UA authentication, role permissions, method validation, and the board command gate enforce the ownership in Section~\ref{subsec:configuration-path}.
 
-\paragraph{Configuration}
+The controlled OPC-UA NodeSet XML, variable registry, DAQ-to-OPC-UA mapping, and access-policy table shall carry the same interface version and shall identify, for each field or method, its authoritative source, owner, access, units, range, multiplicity, permitted states, permit dependencies, readback, quality/timestamp semantics, and implementation maturity. Proposed production variables shall be marked separately from those already implemented by the current board service or gateway.
+
+\paragraph{DAQ configuration}
 \begin{itemize}[nosep]
-  \item \texttt{ConfigureRequest} / \texttt{ConfigureResponse}: complete FEB configuration, including timing, analog and control settings.
-  \item \texttt{ScrapRequest} / \texttt{ScrapResponse}: release resources or reset an endpoint as part of re-initialization.
+  \item The OPC-UA \texttt{ConfigureClocks} method maps internally to the compatible \texttt{ConfigureCLKs}\allowbreak\texttt{Request}. It covers the endpoint identifier, endpoint-clock control, MMCM reset and endpoint reset. The corresponding DTS address, deskew, command mapping, resync/reset and transmitter-request controls are DAQ/DTS-owned. Endpoint FSM state, lock, readiness, timestamp validity, protocol-error count, version, LOS and transmitter state are readbacks published to both roles.
+  \item The OPC-UA \texttt{ConfigureRun} and \texttt{Configure}\allowbreak\texttt{Frontend} methods map internally to the compatible \texttt{ConfigureRequest}. They cover slot and timeout; board bias-control value; self-trigger threshold, cross-correlation, trigger-primitive, compensator and inverter values; the active channel list with trim, offset and gain; AFE attenuation, bias target and ADC/PGA/LNA settings; and the full-stream channel list. These are DAQ-owned data-taking parameters.
+  \item AFE reset, alignment, and software-trigger operations are DAQ-owned when used to prepare or exercise the data path. The AFE power state exposed by the low-level interface is SC-owned. A combined backend message shall be split into role-safe gateway methods or validated field by field; message placement shall never be used to bypass ownership.
+  \item The DAQ client selects a controlled OPC-UA \texttt{BoardId}; the gateway resolves it to the deployed board-service address. The backend \texttt{daphne\_address} field does not authorize DAQ to change the board IP, MAC, hostname, VLAN or routing. Those values are SC/network-inventory-owned and supplied read-only to DAQ discovery and configuration generation.
+  \item The OPC-UA \texttt{ScrapEndpoint} method may map to \texttt{ScrapRequest} / \texttt{ScrapResponse} to release DAQ resources, disable data links and restore an agreed non-taking analog profile. It shall not change SC-owned board, AFE, mezzanine or external power state.
+  \item The spy-buffer selector (0 software, 1 external, 2 timing/ad-hoc, 3 legacy OR/all) and its inhibit are DAQ-owned. They shall be represented in the versioned DAQ configuration and OPC-UA information model, then applied atomically with readback by the gateway. They are present in the DAPHNE firmware interface but are not yet represented in the reviewed \texttt{daphnemodules} configuration message or current OPC-UA bridge.
+\end{itemize}
+
+\paragraph{SC equipment control}
+\begin{itemize}[nosep]
+  \item SC commands cover board/AFE power enable, bias enable, HD-mezzanine and rail power, service recovery, deployment of an approved firmware image, network and host lifecycle, fan/thermal control, equipment protection settings, alarm acknowledgement, and safe-state recovery. Firmware deployment is forbidden in an active data-taking state and invalidates the prior DAQ configuration.
+  \item Expert raw AFE or FPGA register writes are maintenance-only, require the SC maintenance lock and PDS expert authorization, and shall not be exposed to routine DAQ or SC OPC-UA roles. They shall not provide a path around DAQ/SC field ownership.
+  \item SC and DPS permits are inputs to the gateway and board command gates. A permit removal or safe-state command has priority over an in-flight DAQ request and shall return an explicit aborted/rejected result and invalidate the active DAQ configuration.
 \end{itemize}
 
 \paragraph{Monitoring and Information}
 \begin{itemize}[nosep]
-  \item \texttt{InfoRequest} / \texttt{InfoResponse}: monitoring of stream statistics, per-channel counters, bias voltages, voltage/current monitors, and temperature sensors.
+  \item The gateway uses \texttt{InfoRequest} / \texttt{InfoResponse} and the production monitoring extension internally, then publishes coherent, timestamped OPC-UA snapshots of stream statistics; per-channel counters; complete effective DAQ configuration and readback; bias settings and measurements; voltage/current monitors; temperatures and fans; Ethernet/MAC/IP and link state; service and firmware state; SFP DOM/LOS and I2C state; timing lock/FSM/timestamp validity; and trigger selectors and readbacks.
+  \item SC receives and archives the full equipment and configuration monitoring registry. DAQ consumes the readiness, data-path, timing, trigger and effective-configuration subset required for run control. Monitoring a value does not confer write authority over it.
 \end{itemize}
 
 \paragraph{Diagnostics}
 \begin{itemize}[nosep]
-  \item \texttt{DumpBuffersRequest} / \texttt{DumpBuffersResponse}: waveform capture and export to files for diagnostic or calibration purposes.
+  \item The DAQ-owned OPC-UA \texttt{DumpSpyBuffers} method maps to \texttt{DumpSpyBuffers}\allowbreak\texttt{Request} / \texttt{DumpSpyBuffers}\allowbreak\texttt{Response} for diagnostic or calibration capture. Large waveform payloads are not SC historian variables and may be returned through a bounded artifact-transfer mechanism referenced by the method result.
   
 \end{itemize}
 
@@ -108,6 +130,28 @@ All configuration, control, and monitoring of the DAPHNE and LCM modules shall b
 \begin{itemize}[nosep]
   \item Endpoints shall flag affected data when an error condition is detected.
 
-  \item DAQ backend checks shall complement endpoint reports; any additional errors detected downstream shall be forwarded to the CCM, which remains the single point of coordination for recovery.
+  \item DAQ backend checks shall complement endpoint reports; any additional errors detected downstream shall be forwarded to Run Control and SC. SC resolves equipment faults and restores the equipment-ready permit; DAQ restores and verifies data-taking configuration. DPS interlocks and protective actions remain authoritative and independent.
 \end{itemize}
 
+\subsection{Operational Constraints and Cross-System Coordination}
+
+Before a board-changing request is accepted during a run, the OPC-UA gateway shall evaluate the authenticated client's role and field ownership, the applicable run-state guards, and external permits. The board service retains independent range and safety validation. The exact limits, permit polarity, and fail-safe response remain joint PDS, DAQ, SC, DPS, and facility-system sign-off items.
+
+A jointly controlled state-and-command table shall define at least unavailable/off,
+starting, available, DAQ-configured, taking data, safe/fault, and maintenance conditions.
+For every mutating method it shall define allowed source roles and states, required permits,
+transition, timeout, rollback or safe outcome, configuration-validity effect, and mandatory
+readback. The names may follow the adopted DAQ and SC state models, but the behavior shall
+be unambiguous at their boundary.
+
+\begin{itemize}[nosep]
+  \item \textbf{Cryogenics:} expose the relevant cryostat state and agreed stability or permissive indication. Requests that depend on detector conditions shall be rejected or inhibited when that permit is not valid.
+  \item \textbf{High voltage:} expose HV state and trips, and apply the agreed restrictions to bias, trigger, calibration, and recovery operations during ramping, unstable, or tripped conditions.
+  \item \textbf{Electronics infrastructure:} rack cooling and fan state, low-voltage supplies, PDU/UPS state, and network reachability shall participate in readiness and safe-state handling as agreed with the owning systems.
+  \item \textbf{Physics and noise runs:} allowed trigger source, thresholds, channel masks, spy-buffer access, and diagnostic traffic shall be defined by run type. Noise-run settings shall not bypass cryogenic, HV, or DPS permits.
+  \item \textbf{Calibration runs:} LCM drive settings, DAPHNE capture configuration, DTS command and group masks, repetition limits, and calibration tagging shall be applied as one correlated operation with verified readback.
+  \item \textbf{Power-over-Fiber and external services:} SC owns infrastructure power, availability and health for PoF transmitters and other external services. DAQ owns only the settings that determine calibration or acquired data. A service or protection inhibit shall block the dependent DAQ action without transferring its configuration to SC.
+  \item \textbf{Timing faults and maintenance:} loss of timing, firmware update, endpoint restart, or maintenance mode shall inhibit incompatible requests, publish the reason, and require the agreed recovery or re-entry sequence.
+\end{itemize}
+
+The shared OPC-UA namespace shall expose the same permit state, inhibit reason, effective configuration and audit trail to each authorized role. No client or gateway action shall mask or override a hardware or DPS protection action. The complete installed-channel/system inventory, monitoring cadence, alarm thresholds, permitted actions by run state, timeout and retry policy, and failure response shall be recorded before interface approval; these items do not alter the fixed DAQ/SC ownership split.

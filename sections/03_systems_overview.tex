@@ -14,19 +14,32 @@ Channel-to-board mapping is detector-specific. In HD, each DAPHNE FEB services 4
 The DAQ consortium is responsible for collecting the data from all the PDs, APAs (FD1-
 HD), CRP (FD2-VD) selecting the interesting interactions and assembling them for
 transmission to permanent storage on disk or tape. The DAQ consortium is also responsible
-for the distribution of timing signals to all the DUNE detector components, as well as for the
-control, configuration, and monitoring of all the active readout components, through the
-Control Configuration and Monitoring (CCM) subsystem.
+for the distribution of timing signals to all the DUNE detector components and for issuing
+the configuration that determines data taking in the active readout components. The
+versioned DAQ configuration model is maintained in the DUNE-DAQ framework, including the
+DAPHNE definitions in \texttt{daphnemodules}. At run time DAQ applies that configuration
+using its authenticated role on the shared PDS OPC-UA gateway. Slow Control (SC) uses a
+separate authenticated role on the same gateway to configure and maintain the equipment
+services needed to keep each endpoint powered, available, monitored, and protected. SC
+does not receive, approve, modify, or execute a DAQ configuration handoff. The fixed
+ownership split and shared gateway interface are described in
+Section~\ref{subsec:configuration-path}.
 
 Timing distribution, readout aggregation, and CCM. DAQ provides common firmware blocks for timing endpoint decode and 10\,GbE UDP transmission.
 
 \subsection{Light Calibration Modules}
-A pulsed UV-light calibration system monitors gain, linearity, timing resolution, and long-term stability. Light Calibration Modules (LCM) generate UV pulses (245–280\,nm), which are distributed through optical fibers and diffusers mounted on detector structures. Each LCM integrates an FPGA-based controller, an LED pulser module (LPM), and a bulk power supply. The LPM settings (amplitude, multiplicity, repetition rate, duration) are digitally controlled, while internal ADCs monitor a reference photodiode for pulse-by-pulse stability.\\
+A pulsed UV-light calibration system monitors gain, linearity, timing resolution, and long-term stability. Light Calibration Modules (LCM) generate UV pulses (245--280\,nm), which are distributed through optical fibers and diffusers mounted on detector structures. Each LCM integrates an FPGA-based controller, an LED pulser module (LPM), and a bulk power supply. The LPM settings (amplitude, multiplicity, repetition rate, duration) are digitally controlled, while internal ADCs monitor a reference photodiode for pulse-by-pulse stability.\\
 Up to 18 timing endpoints are foreseen for PDS calibration electronics per detector module.
+
+DAQ/PDS owns the pulse parameters, timing-group selection, DAPHNE capture configuration,
+and execution of a data-taking calibration sequence. SC owns LCM external power, service
+availability, environmental monitoring, equipment alarms, and protective inhibit or
+safe-state actions. SC may monitor the requested and effective calibration settings without
+acquiring write authority over them.
 
 \subsection{Timing interface}
 
-\label{sec:timing}
+\label{sec:systems-timing}
 
 The primary functions of the DUNE Timing System (DTS) are to:
 \begin{itemize}[nosep]

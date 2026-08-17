@@ -1,0 +1,33 @@
+\section*{Revision 8 change summary}
+\addcontentsline{toc}{section}{Revision 8 change summary}
+
+The controlled revision 7 baseline is the 10 June 2026 source revision. This proposed
+revision 8 incorporates the DAQ--SC configuration boundary developed with the new PDS
+OPC-UA variable and control-policy files and the SC--PDS ICD draft. It does not transfer
+DAQ configuration responsibility to SC. Monitoring or archiving a value does not confer
+write authority over that value.
+
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}p{3.0cm}p{5.7cm}p{6.2cm}@{}}
+\toprule
+\textbf{Topic} & \textbf{Revision 7} & \textbf{Proposed revision 8} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Topic} & \textbf{Revision 7} & \textbf{Proposed revision 8} \\
+\midrule
+\endhead
+Configuration ownership & CCM described as a common configuration and monitoring path; the DAQ--SC write boundary was not explicit. & DAQ owns all values that determine acquired data. SC owns equipment lifecycle, power, availability, monitoring, protection, and safe-state actions. DPS protection remains authoritative. \\
+Configuration source & DAPHNE Protobuf operations were named, without identifying the DAQ configuration source of truth. & The DAQ data-taking model remains versioned in the DUNE-DAQ framework and \texttt{daphnemodules}. The OPC-UA model provides a controlled mapping and must not become an independent SC copy of the DAQ schema. \\
+Control architecture & Direct Protobuf CCM use and possible coexistence of controllers were described. & DAQ and SC are separate authenticated OPC-UA clients of one neutral PDS gateway. The gateway is the sole routine board-service client, enforces field ownership, and serializes accepted mutations. \\
+Bias control & Numerical bias setting and bias power/permission were not separated. & DAQ owns the numerical bias target used for data taking. SC owns bias enable, equipment readiness, and operational permits; DPS may independently inhibit or remove permission. \\
+Run and recovery state & Acknowledgement and generic recovery were required. & Every mutation carries role, scope, run type, configuration revision/hash, and correlation ID. Safe-state action invalidates the active DAQ configuration; DAQ must apply and verify a fresh configuration before data taking resumes. \\
+LCM calibration & Synchronous calibration behavior was described without a DAQ--SC split. & DAQ/PDS owns pulse settings and sequence execution; SC owns external power, availability, health, alarms, and protective inhibit. \\
+Timing optics/startup & Timing optics and startup wording were ambiguous. & Endpoint optics are TX 1550\,nm/RX 1490\,nm with complementary master optics; timing lock enables configuration, while data transmission remains separately controlled by run state. \\
+Verification & Interface verification did not test role ownership or concurrency. & Revision 8 adds schema traceability, authorization-negative, concurrency, permit, restart/recovery, monitoring-quality, LCM, scale, and security tests. \\
+\bottomrule
+\end{longtable}
+
+The named gateway methods and variable paths in this revision are an interface proposal.
+They become normative only after the OPC-UA NodeSet, DAQ-to-OPC-UA mapping, permissions,
+state guards, limits, and conformance tests are jointly approved and versioned.
