@@ -7,8 +7,8 @@
 ,Write rule,"The OPC-UA gateway authorizes every typed method against the exported workbook policy and serializes accepted board mutations; the board service retains independent range/safety validation. All writes require authenticated authority, state/permit guards, bounded execution, audit, and verified readback/postcondition."
 ,Threshold policy,No numeric alarm/interlock thresholds are guessed. PDS/SC/DPS must fill reviewed limits and actions before approval.
 ,External compatibility evidence,The NP02 Compatibility sheet transcribes a supplied 2025 color matrix as historical admission evidence. Red means an activation pair is incompatible; green does not bypass other guards; orange 'probably compatible' remains unresolved and is not a permit. The source is not a production cause-and-effect specification.
-,Prepared,2026-08-17
-,Document status,Draft 0.7 for joint PDS / Slow Controls / DAQ / DPS review
+,Prepared,2026-08-18
+,Document status,Draft 0.8 for joint PDS / Slow Controls / DAQ / DPS review
 ,Companion document,"DUNE Interface Control Document: DAQ & Photon Detector System (PDS), proposed v8.0 revision"
 ,Current prototype namespace,urn:dune:pds:np04; the production namespace and endpoint assignments remain approval items.
 ,EDMS template basis,DCS_Intake_Template.xlsx; all example values and actions are explicitly cleared.

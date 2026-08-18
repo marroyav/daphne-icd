@@ -3,16 +3,16 @@ schema_version: 1
 artifact:
   id: "dune-pds-daphne-variable-intake"
   title: "DAPHNE DCS full variable intake"
-  version: "2026-08-17"
+  version: "2026-08-18"
   status: "proposed-v8-review-input"
   approval: "not-approved-for-operations"
-  prepared_date: "2026-08-17"
+  prepared_date: "2026-08-18"
   added_to_interface2: "2026-08-17"
   opcua_namespace_uri: "urn:dune:pds:daphne"
 
 content:
   workbook: "DAPHNE_DCS_Full_Variable_Intake.xlsx"
-  workbook_sha256: "87f872595e5ddde5e09fe2930903811e6538472d8f17d461a5e9b1a2bec0077a"
+  workbook_sha256: "b92b5325dce32f7c0ee836fe227411b6e51104f64774ef2f1c471b7f16b6094f"
   worksheets: 12
   variable_patterns: 383
   control_policy: "DAPHNE_OPCUA_Control_Policy.csv"
