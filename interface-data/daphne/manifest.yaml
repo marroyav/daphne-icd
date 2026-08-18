@@ -18,6 +18,10 @@ content:
   control_policy: "DAPHNE_OPCUA_Control_Policy.csv"
   control_policy_sha256: "e91d7f846dc75260a72d1e1d6815b25e241739224a85649537b3a860c0c709a9"
   control_operations: 21
+  protobuf_field_trace: "exports/protobuf_field_trace.csv"
+  protobuf_field_trace_sha256: "6f654bedc6b11b8bb0d3af1066220e1f3cc8960ec496693d749ef83afe996177"
+  explicit_protobuf_fields: 316
+  expanded_board_samples: 1370
   np02_compatibility_pairs: 15
   np02_incompatible_pairs: 6
   np02_compatible_pairs: 5
@@ -30,6 +34,16 @@ role:
   daq_configuration_source: "DUNE-DAQ framework and daphnemodules"
   slow_controls_scope: "equipment lifecycle, power, availability, monitoring, protection, and safe-state actions"
   shared_contract: "jointly approved NodeSet, mappings, permissions, state guards, limits, and conformance tests"
+
+wire_contract:
+  status: "proposed-v8-explicit-field-draft"
+  schema_version: "2.0"
+  canonical_source: "daphneZMQ/srcs/protobuf/daphne_v8_telemetry.proto"
+  canonical_source_sha256: "c464409f3fc88f37432cf38d83eccbbd87da41bfe9c615810e0cd37732782469"
+  field_number_ledger: "exports/protobuf_field_trace.csv"
+  compatibility_rule: "released field numbers and enum values are append-only and must never be reused"
+  bridge_role: "mechanical consumer of declared fields; not owner of DAPHNE variable names, types, units, sources, or control ownership"
+  write_boundary: "snapshot 1002/1003 is read-only; DAQ configuration messages remain in the DAQ-owned high-level protobuf and daphnemodules"
 
 provenance:
   generation_package: "DAPHNE Slow Controls and DAQ-PDS interface working package"

@@ -30,7 +30,8 @@ configuration and not an independent Slow Controls copy of the DAQ schema.
 - `DAPHNE_OPCUA_Control_Policy.csv` — machine-readable export of the workbook's
   OPC-UA control-policy sheet.
 - `exports/` — one stable CSV file per worksheet for code review and comparison,
-  including the structured `np02_compatibility.csv` transcription.
+  including the structured `np02_compatibility.csv` transcription and the
+  generated `protobuf_field_trace.csv` wire-field ledger.
 - `manifest.yaml` — status, scope, provenance, counts, and known gaps.
 - `SHA256SUMS` — integrity hashes for the workbook, policy, and CSV exports.
 - `nodeset/` — location reserved for the approved project-specific NodeSet XML.
@@ -70,9 +71,34 @@ The PDF is not redistributed in this repository. Its exact SHA-256 digest and
 limitations are recorded in `manifest.yaml` and the workbook's `Source Audit`
 sheet.
 
+## Explicit Protobuf trace
+
+`exports/protobuf_field_trace.csv` is the reviewable field-number ledger for
+the proposed v8 DAPHNE telemetry schema. It maps each of the 316 board-owned
+variable patterns to one named `BoardTelemetry` field, its stable field number,
+typed sample or repeated instance wrapper, explicit instance keys, OPC-UA
+NodeId pattern, engineering unit, data source, and control owner. Those fields
+expand to 1,370 samples for the current HD board instance set.
+
+The `field_status` column preserves retired entries. Their numbers and names
+remain reserved in the generated schema, so removing a variable cannot make a
+later variable silently reuse its wire identity.
+
+The canonical generator and schema live in `daphneZMQ` at
+`scripts/generate_v8_explicit_proto.py` and
+`srcs/protobuf/daphne_v8_telemetry.proto`. The copy compiled by `daphne-sc`
+must be byte-for-byte identical. The bridge consumes the compiled field
+declarations; it is not the owner of a parallel mapping table.
+
+The schema defines a complete read-snapshot request/response. DAQ configuration
+messages remain in the DAQ-owned high-level protobuf and `daphnemodules`.
+Monitoring a DAQ-owned setting through this snapshot does not transfer write
+authority to Slow Controls.
+
 ## Refresh and verify
 
-From the repository root, regenerate all CSV exports and checksums with:
+From the repository root, regenerate all workbook CSV exports, verify the
+explicit Protobuf trace, and refresh checksums with:
 
 ```sh
 uv run --with openpyxl python interface-data/daphne/scripts/export_workbook.py

@@ -1,0 +1,317 @@
+protobuf_field_number,protobuf_field,field_status,protobuf_type,repeated,instance_fields,opcua_node_pattern,dcs_data_type,engineering_unit,data_source,control_owner
+1,BoardTelemetry.operations_last_command_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandId,String,N/A,Production command-audit contract,Board service (shared audit)
+2,BoardTelemetry.operations_last_command_name,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandName,String,N/A,Production command-audit contract,Board service (shared audit)
+3,BoardTelemetry.operations_last_command_class,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandClass,String,N/A,Production command-audit contract,Board service (shared audit)
+4,BoardTelemetry.operations_last_command_requester,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandRequester,String,N/A,Production command-audit contract,Board service (shared audit)
+5,BoardTelemetry.operations_last_command_authority,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandAuthority,String,N/A,Production command-audit contract,Board service (shared audit)
+6,BoardTelemetry.operations_last_command_route,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandRoute,String,N/A,Production command-audit contract,Board service (shared audit)
+7,BoardTelemetry.operations_last_command_correlation_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandCorrelationId,String,N/A,Production command-audit contract,Board service (shared audit)
+8,BoardTelemetry.operations_last_command_request_time,Active,DateTimeSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandRequestTime,DateTime,N/A,Production command-audit contract,Board service (shared audit)
+9,BoardTelemetry.operations_last_command_completion_time,Active,DateTimeSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandCompletionTime,DateTime,N/A,Production command-audit contract,Board service (shared audit)
+10,BoardTelemetry.operations_last_command_state,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandState,String,N/A,Production command-audit contract,Board service (shared audit)
+11,BoardTelemetry.operations_last_command_result,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandResult,String,N/A,Production command-audit contract,Board service (shared audit)
+12,BoardTelemetry.operations_last_command_readback_verified,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Operations.LastCommandReadbackVerified,Boolean,N/A,Production command-audit contract,Board service (shared audit)
+13,BoardTelemetry.identity_board_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.BoardId,String,N/A,HWDB / deployment inventory,HWDB / network authority; SC monitors
+14,BoardTelemetry.identity_hardware_database_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.HardwareDatabaseId,String,N/A,HWDB,HWDB / network authority; SC monitors
+15,BoardTelemetry.identity_asset_tag,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.AssetTag,String,N/A,HWDB + physical label,HWDB / network authority; SC monitors
+16,BoardTelemetry.identity_detector,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.Detector,String,N/A,HWDB,HWDB / network authority; SC monitors
+17,BoardTelemetry.identity_detector_variant,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.DetectorVariant,String,N/A,HWDB,HWDB / network authority; SC monitors
+18,BoardTelemetry.identity_geographic_location,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.GeographicLocation,String,N/A,HWDB,HWDB / network authority; SC monitors
+19,BoardTelemetry.identity_som_product,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.SomProduct,String,N/A,K26 EEPROM 0x50,HWDB / network authority; SC monitors
+20,BoardTelemetry.identity_som_serial,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.SomSerial,String,N/A,K26 EEPROM 0x50,HWDB / network authority; SC monitors
+21,BoardTelemetry.identity_som_uuid,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.SomUuid,String,N/A,K26 EEPROM 0x50,HWDB / network authority; SC monitors
+22,BoardTelemetry.identity_carrier_revision,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.CarrierRevision,String,N/A,HWDB + asset record,HWDB / network authority; SC monitors
+23,BoardTelemetry.identity_factory_mac,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.FactoryMac,String,N/A,K26 EEPROM 0x50,HWDB / network authority; SC monitors
+24,BoardTelemetry.identity_approved_mac,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.ApprovedMac,String,N/A,HWDB / network authority,HWDB / network authority; SC monitors
+25,BoardTelemetry.identity_mac_identity_match,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Identity.MacIdentityMatch,Boolean,N/A,Derived identity check,HWDB / network authority; SC monitors
+26,BoardTelemetry.identity_hostname,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.Hostname,String,N/A,Linux + board configuration,HWDB / network authority; SC monitors
+27,BoardTelemetry.identity_expected_hostname,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Identity.ExpectedHostname,String,N/A,HWDB / deployment inventory,HWDB / network authority; SC monitors
+28,BoardTelemetry.identity_hostname_match,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Identity.HostnameMatch,Boolean,N/A,Derived identity check,HWDB / network authority; SC monitors
+29,BoardTelemetry.identity_timing_endpoint_address,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.TimingEndpointAddress,Integer,N/A,endpointControl.ADDRESS / board inventory,DAQ / DTS
+30,BoardTelemetry.identity_crate_id,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.CrateId,Integer,N/A,FpgaRegDict.idCrate,DAQ
+31,BoardTelemetry.identity_slot_id,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.SlotId,Integer,N/A,FpgaRegDict.idSlot,DAQ
+32,BoardTelemetry.identity_link_id,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.LinkId,Integer,N/A,FpgaRegDict.idLink,DAQ
+33,BoardTelemetry.identity_detector_id,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.DetectorId,Integer,N/A,FpgaRegDict.idDetector,DAQ
+34,BoardTelemetry.identity_register_map_version,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Identity.RegisterMapVersion,Integer,N/A,FpgaRegDict.idVersion,HWDB / network authority; SC monitors
+35,BoardTelemetry.network_interfaces_name,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.Name,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+36,BoardTelemetry.network_interfaces_mac_address,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.MacAddress,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+37,BoardTelemetry.network_interfaces_permanent_mac_address,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.PermanentMacAddress,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+38,BoardTelemetry.network_interfaces_ipv4_address,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.Ipv4Address,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+39,BoardTelemetry.network_interfaces_prefix_length,Active,InterfaceIntegerReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.PrefixLength,Integer,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+40,BoardTelemetry.network_interfaces_default_gateway,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.DefaultGateway,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+41,BoardTelemetry.network_interfaces_dns_servers,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.DnsServers,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+42,BoardTelemetry.network_interfaces_vlan_id,Active,InterfaceIntegerReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.VlanId,Integer,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+43,BoardTelemetry.network_interfaces_operational_state,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.OperationalState,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+44,BoardTelemetry.network_interfaces_carrier,Active,InterfaceBooleanReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.Carrier,Boolean,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+45,BoardTelemetry.network_interfaces_speed_mbps,Active,InterfaceIntegerReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.SpeedMbps,Integer,Mbit/s,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+46,BoardTelemetry.network_interfaces_duplex,Active,InterfaceStringReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.Duplex,String,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+47,BoardTelemetry.network_interfaces_mtu_bytes,Active,InterfaceIntegerReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.MtuBytes,Integer,byte,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+48,BoardTelemetry.network_interfaces_rx_bytes,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.RxBytes,Long,byte,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+49,BoardTelemetry.network_interfaces_rx_packets,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.RxPackets,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+50,BoardTelemetry.network_interfaces_rx_errors,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.RxErrors,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+51,BoardTelemetry.network_interfaces_rx_dropped,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.RxDropped,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+52,BoardTelemetry.network_interfaces_tx_bytes,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.TxBytes,Long,byte,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+53,BoardTelemetry.network_interfaces_tx_packets,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.TxPackets,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+54,BoardTelemetry.network_interfaces_tx_errors,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.TxErrors,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+55,BoardTelemetry.network_interfaces_tx_dropped,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.TxDropped,Long,packet,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+56,BoardTelemetry.network_interfaces_link_change_count,Active,InterfaceLongReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.LinkChangeCount,Long,count,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+57,BoardTelemetry.network_interfaces_configuration_match,Active,InterfaceBooleanReading,Yes,interface,DAPHNE.Boards.{BoardId}.Network.Interfaces.{Interface}.ConfigurationMatch,Boolean,N/A,Linux rtnetlink/sysfs plus HWDB/network inventory,Slow Controls
+58,BoardTelemetry.host_current_utc,Active,DateTimeSample,No,,DAPHNE.Boards.{BoardId}.Host.CurrentUtc,DateTime,N/A,Linux clock,Slow Controls
+59,BoardTelemetry.host_unix_time_ns,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Host.UnixTimeNs,Long,N/A,Linux clock,Slow Controls
+60,BoardTelemetry.host_uptime_seconds,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Host.UptimeSeconds,Long,s,Linux /proc/uptime,Slow Controls
+61,BoardTelemetry.host_boot_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.BootId,String,N/A,Linux /proc/sys/kernel/random/boot_id,Slow Controls
+62,BoardTelemetry.host_boot_time,Active,DateTimeSample,No,,DAPHNE.Boards.{BoardId}.Host.BootTime,DateTime,N/A,CurrentUtc - UptimeSeconds,Slow Controls
+63,BoardTelemetry.host_kernel_release,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.KernelRelease,String,N/A,uname,Slow Controls
+64,BoardTelemetry.host_operating_system_version,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.OperatingSystemVersion,String,N/A,/etc/os-release,Slow Controls
+65,BoardTelemetry.host_root_filesystem_build_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.RootFilesystemBuildId,String,N/A,release manifest,Slow Controls
+66,BoardTelemetry.host_active_boot_slot,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.ActiveBootSlot,String,N/A,boot-state service/U-Boot env,Slow Controls
+67,BoardTelemetry.host_boot_marked_good,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Host.BootMarkedGood,Boolean,N/A,daphne-boot-ok.service,Slow Controls
+68,BoardTelemetry.host_last_reset_reason,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.LastResetReason,String,N/A,kernel/PMU/boot evidence,Slow Controls
+69,BoardTelemetry.host_watchdog_healthy,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Host.WatchdogHealthy,Boolean,N/A,watchdog/sysfs,Slow Controls
+70,BoardTelemetry.host_ntp_synchronized,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Host.NtpSynchronized,Boolean,N/A,timesync service,Slow Controls
+71,BoardTelemetry.host_ntp_offset_milliseconds,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Host.NtpOffsetMilliseconds,Double,ms,timesync service,Slow Controls
+72,BoardTelemetry.host_time_source,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Host.TimeSource,String,N/A,timesync service,Slow Controls
+73,BoardTelemetry.host_cpu_load1_minute,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Host.CpuLoad1Minute,Double,N/A,/proc/loadavg,Slow Controls
+74,BoardTelemetry.host_memory_available_bytes,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Host.MemoryAvailableBytes,Long,byte,/proc/meminfo,Slow Controls
+75,BoardTelemetry.host_root_filesystem_free_bytes,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Host.RootFilesystemFreeBytes,Long,byte,statvfs,Slow Controls
+76,BoardTelemetry.host_root_filesystem_read_only,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Host.RootFilesystemReadOnly,Boolean,N/A,mount state,Slow Controls
+77,BoardTelemetry.services_active,Active,ServiceBooleanReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.Active,Boolean,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+78,BoardTelemetry.services_state,Active,ServiceStringReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.State,String,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+79,BoardTelemetry.services_main_pid,Active,ServiceIntegerReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.MainPid,Integer,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+80,BoardTelemetry.services_restart_count,Active,ServiceIntegerReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.RestartCount,Integer,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+81,BoardTelemetry.services_start_time,Active,ServiceDateTimeReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.StartTime,DateTime,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+82,BoardTelemetry.services_last_exit_status,Active,ServiceStringReading,Yes,service,DAPHNE.Boards.{BoardId}.Services.{Service}.LastExitStatus,String,N/A,SlowControlStatusResponse.ServiceStatus / systemd,Slow Controls
+83,BoardTelemetry.firmware_loaded,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.Loaded,Boolean,N/A,SlowControlStatusResponse.FirmwareStatus.loaded,Slow Controls
+84,BoardTelemetry.firmware_fpga_manager_state,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.FpgaManagerState,String,N/A,FirmwareStatus.fpga_manager_state,Slow Controls
+85,BoardTelemetry.firmware_overlay_name,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.OverlayName,String,N/A,FirmwareStatus.overlay_name,Slow Controls
+86,BoardTelemetry.firmware_build_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.BuildId,String,N/A,FirmwareStatus.build_id,Slow Controls
+87,BoardTelemetry.firmware_git_commit,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.GitCommit,String,N/A,FpgaRegDict.GIT,Slow Controls
+88,BoardTelemetry.firmware_expected_build_id,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.ExpectedBuildId,String,N/A,release manifest,Slow Controls
+89,BoardTelemetry.firmware_build_matches_expected,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.BuildMatchesExpected,Boolean,N/A,derived comparison,Slow Controls
+90,BoardTelemetry.firmware_register_map_version_matches,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.RegisterMapVersionMatches,Boolean,N/A,idVersion + server manifest,Slow Controls
+91,BoardTelemetry.firmware_pl_i2c_device_present,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.PlI2cDevicePresent,Boolean,N/A,FirmwareStatus.pl_devices_present / preflight,Slow Controls
+92,BoardTelemetry.firmware_pl_spi_device_present,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.PlSpiDevicePresent,Boolean,N/A,FirmwareStatus.pl_devices_present / preflight,Slow Controls
+93,BoardTelemetry.firmware_active_xmutil_application,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.ActiveXmutilApplication,String,N/A,xmutil listapps,Slow Controls
+94,BoardTelemetry.firmware_firmware_update_state,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.FirmwareUpdateState,String,N/A,firmware update contract,Slow Controls
+95,BoardTelemetry.firmware_firmware_path_available,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.FirmwarePathAvailable,Boolean,N/A,firmware update contract,Slow Controls
+96,BoardTelemetry.firmware_firmware_artifact_sha256,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.FirmwareArtifactSha256,String,N/A,release/deployment manifest,Slow Controls
+97,BoardTelemetry.firmware_server_version,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.ServerVersion,String,N/A,board service build metadata,Slow Controls
+98,BoardTelemetry.firmware_protobuf_schema_version,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.ProtobufSchemaVersion,String,N/A,board service build metadata,Slow Controls
+99,BoardTelemetry.firmware_gateware_heartbeat,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Firmware.GatewareHeartbeat,Long,N/A,required gateware health block,Slow Controls
+100,BoardTelemetry.firmware_gateware_fatal_fault_latched,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.GatewareFatalFaultLatched,Boolean,N/A,required gateware health block,Slow Controls
+101,BoardTelemetry.firmware_gateware_reset_reason,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Firmware.GatewareResetReason,String,N/A,required gateware health block,Slow Controls
+102,BoardTelemetry.firmware_configuration_ready,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Firmware.ConfigurationReady,Boolean,N/A,analog-control contract,Slow Controls
+103,BoardTelemetry.rpu_available,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.RPU.Available,Boolean,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+104,BoardTelemetry.rpu_running,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.RPU.Running,Boolean,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+105,BoardTelemetry.rpu_firmware,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.RPU.Firmware,String,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+106,BoardTelemetry.rpu_heartbeat,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.RPU.Heartbeat,Long,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+107,BoardTelemetry.rpu_last_fault,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.RPU.LastFault,String,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+108,BoardTelemetry.rpu_abi_version,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.RPU.AbiVersion,Integer,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+109,BoardTelemetry.rpu_interlock_ready,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.RPU.InterlockReady,Boolean,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+110,BoardTelemetry.rpu_fault_code,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.RPU.FaultCode,Integer,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+111,BoardTelemetry.rpu_command_queue_depth,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.RPU.CommandQueueDepth,Integer,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+112,BoardTelemetry.rpu_last_reply_sequence,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.RPU.LastReplySequence,Long,N/A,SlowControlStatusResponse.RpuStatus / RPU wire status,Slow Controls
+113,BoardTelemetry.i2_c_buses_present,Active,BusBooleanReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Present,Boolean,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+114,BoardTelemetry.i2_c_buses_path,Active,BusStringReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Path,String,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+115,BoardTelemetry.i2_c_buses_functional,Active,BusBooleanReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Functional,Boolean,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+116,BoardTelemetry.i2_c_buses_owner,Active,BusStringReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Owner,String,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+117,BoardTelemetry.i2_c_buses_busy,Active,BusBooleanReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Busy,Boolean,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+118,BoardTelemetry.i2_c_buses_last_success,Active,BusDateTimeReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.LastSuccess,DateTime,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+119,BoardTelemetry.i2_c_buses_error_count,Active,BusLongReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.ErrorCount,Long,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+120,BoardTelemetry.i2_c_buses_timeout_count,Active,BusLongReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.TimeoutCount,Long,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+121,BoardTelemetry.i2_c_buses_recovery_count,Active,BusLongReading,Yes,bus,DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.RecoveryCount,Long,N/A,SlowControlStatusResponse.I2CBusStatus plus required metrics,Slow Controls
+122,BoardTelemetry.i2_c_buses_devices_name,Active,BusAddressStringReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.Name,String,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+123,BoardTelemetry.i2_c_buses_devices_present,Active,BusAddressBooleanReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.Present,Boolean,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+124,BoardTelemetry.i2_c_buses_devices_driver,Active,BusAddressStringReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.Driver,String,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+125,BoardTelemetry.i2_c_buses_devices_status,Active,BusAddressStringReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.Status,String,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+126,BoardTelemetry.i2_c_buses_devices_last_success,Active,BusAddressDateTimeReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.LastSuccess,DateTime,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+127,BoardTelemetry.i2_c_buses_devices_error_count,Active,BusAddressLongReading,Yes,"bus,address",DAPHNE.Boards.{BoardId}.I2C.Buses.{Bus}.Devices.{Address}.ErrorCount,Long,N/A,SlowControlStatusResponse.I2CDeviceStatus / device driver,Slow Controls
+128,BoardTelemetry.spi_present,Active,DeviceBooleanReading,Yes,device,DAPHNE.Boards.{BoardId}.SPI.{Device}.Present,Boolean,N/A,preflight /dev/spidev3.0 and current-monitor driver,Slow Controls
+129,BoardTelemetry.spi_functional,Active,DeviceBooleanReading,Yes,device,DAPHNE.Boards.{BoardId}.SPI.{Device}.Functional,Boolean,N/A,preflight /dev/spidev3.0 and current-monitor driver,Slow Controls
+130,BoardTelemetry.spi_owner,Active,DeviceStringReading,Yes,device,DAPHNE.Boards.{BoardId}.SPI.{Device}.Owner,String,N/A,preflight /dev/spidev3.0 and current-monitor driver,Slow Controls
+131,BoardTelemetry.spi_error_count,Active,DeviceLongReading,Yes,device,DAPHNE.Boards.{BoardId}.SPI.{Device}.ErrorCount,Long,N/A,preflight /dev/spidev3.0 and current-monitor driver,Slow Controls
+132,BoardTelemetry.spi_last_success,Active,DeviceDateTimeReading,Yes,device,DAPHNE.Boards.{BoardId}.SPI.{Device}.LastSuccess,DateTime,N/A,preflight /dev/spidev3.0 and current-monitor driver,Slow Controls
+133,BoardTelemetry.power_board_rails_3_v3_pds_voltage,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.3V3PDS.Voltage,Double,V,ADS7138 0x10/0x17 cached monitor; GeneralInfo exposes a subset,Slow Controls
+134,BoardTelemetry.power_board_rails_3_v3_pds_status,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.3V3PDS.Status,String,N/A,required typed rail status,Slow Controls
+135,BoardTelemetry.power_board_rails_1_v8_pds_voltage,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.1V8PDS.Voltage,Double,V,ADS7138 0x10/0x17 cached monitor; GeneralInfo exposes a subset,Slow Controls
+136,BoardTelemetry.power_board_rails_1_v8_pds_status,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.1V8PDS.Status,String,N/A,required typed rail status,Slow Controls
+137,BoardTelemetry.power_board_rails_3_v3_a_voltage,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.3V3A.Voltage,Double,V,ADS7138 0x10/0x17 cached monitor; GeneralInfo exposes a subset,Slow Controls
+138,BoardTelemetry.power_board_rails_3_v3_a_status,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.3V3A.Status,String,N/A,required typed rail status,Slow Controls
+139,BoardTelemetry.power_board_rails_1_v8_a_voltage,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.1V8A.Voltage,Double,V,ADS7138 0x10/0x17 cached monitor; GeneralInfo exposes a subset,Slow Controls
+140,BoardTelemetry.power_board_rails_1_v8_a_status,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.1V8A.Status,String,N/A,required typed rail status,Slow Controls
+141,BoardTelemetry.power_board_rails_minus5_va_voltage,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.Minus5VA.Voltage,Double,V,ADS7138 0x10/0x17 cached monitor; GeneralInfo exposes a subset,Slow Controls
+142,BoardTelemetry.power_board_rails_minus5_va_status,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Power.BoardRails.Minus5VA.Status,String,N/A,required typed rail status,Slow Controls
+143,BoardTelemetry.power_pm_bus_voltage,Active,RailDoubleReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.Voltage,Double,V,PJT004A0X43 / Rust PMBus collector,Slow Controls
+144,BoardTelemetry.power_pm_bus_current,Active,RailDoubleReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.Current,Double,A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+145,BoardTelemetry.power_pm_bus_power,Active,RailDoubleReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.Power,Double,W,PJT004A0X43 / Rust PMBus collector,Slow Controls
+146,BoardTelemetry.power_pm_bus_temperature,Active,RailDoubleReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.Temperature,Double,°C,PJT004A0X43 / Rust PMBus collector,Slow Controls
+147,BoardTelemetry.power_pm_bus_status_byte,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusByte,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+148,BoardTelemetry.power_pm_bus_status_word,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusWord,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+149,BoardTelemetry.power_pm_bus_status_vout,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusVout,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+150,BoardTelemetry.power_pm_bus_status_iout,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusIout,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+151,BoardTelemetry.power_pm_bus_status_temperature,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusTemperature,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+152,BoardTelemetry.power_pm_bus_status_cml,Active,RailIntegerReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.StatusCml,Integer,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+153,BoardTelemetry.power_pm_bus_health,Active,RailStringReading,Yes,rail,DAPHNE.Boards.{BoardId}.Power.PMBus.{Rail}.Health,String,N/A,PJT004A0X43 / Rust PMBus collector,Slow Controls
+154,BoardTelemetry.thermal_sensors_celsius,Active,SensorDoubleReading,Yes,sensor,DAPHNE.Boards.{BoardId}.Thermal.Sensors.{Sensor}.Celsius,Double,°C,SlowControlStatusResponse.TemperatureReading; Linux thermal/hwmon; PMBus/MCP9808/SFP,Slow Controls
+155,BoardTelemetry.thermal_sensors_status,Active,SensorStringReading,Yes,sensor,DAPHNE.Boards.{BoardId}.Thermal.Sensors.{Sensor}.Status,String,N/A,SlowControlStatusResponse.TemperatureReading; Linux thermal/hwmon; PMBus/MCP9808/SFP,Slow Controls
+156,BoardTelemetry.thermal_sensors_last_update,Active,SensorDateTimeReading,Yes,sensor,DAPHNE.Boards.{BoardId}.Thermal.Sensors.{Sensor}.LastUpdate,DateTime,N/A,SlowControlStatusResponse.TemperatureReading; Linux thermal/hwmon; PMBus/MCP9808/SFP,Slow Controls
+157,BoardTelemetry.hd_mezz_block_enabled,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.BlockEnabled,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+158,BoardTelemetry.hd_mezz_configured,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Configured,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+159,BoardTelemetry.hd_mezz_power5_v_requested,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Power5VRequested,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+160,BoardTelemetry.hd_mezz_power3_v3_requested,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Power3V3Requested,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+161,BoardTelemetry.hd_mezz_voltage5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Voltage5V,Double,V,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+162,BoardTelemetry.hd_mezz_current5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Current5V,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+163,BoardTelemetry.hd_mezz_power5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Power5V,Double,W,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+164,BoardTelemetry.hd_mezz_alert5_v,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Alert5V,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+165,BoardTelemetry.hd_mezz_voltage3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Voltage3V3,Double,V,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+166,BoardTelemetry.hd_mezz_current3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Current3V3,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+167,BoardTelemetry.hd_mezz_power3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Power3V3,Double,W,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+168,BoardTelemetry.hd_mezz_alert3_v3,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.Alert3V3,Boolean,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+169,BoardTelemetry.hd_mezz_r_shunt5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.RShunt5V,Double,Ohm,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+170,BoardTelemetry.hd_mezz_r_shunt3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.RShunt3V3,Double,Ohm,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+171,BoardTelemetry.hd_mezz_max_current_scale5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.MaxCurrentScale5V,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+172,BoardTelemetry.hd_mezz_max_current_scale3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.MaxCurrentScale3V3,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+173,BoardTelemetry.hd_mezz_shutdown_current5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.ShutdownCurrent5V,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+174,BoardTelemetry.hd_mezz_shutdown_current3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.ShutdownCurrent3V3,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+175,BoardTelemetry.hd_mezz_max_power5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.MaxPower5V,Double,W,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+176,BoardTelemetry.hd_mezz_max_power3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.MaxPower3V3,Double,W,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+177,BoardTelemetry.hd_mezz_current_lsb5_v,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.CurrentLsb5V,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+178,BoardTelemetry.hd_mezz_current_lsb3_v3,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.CurrentLsb3V3,Double,A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+179,BoardTelemetry.hd_mezz_shunt_cal5_v,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.ShuntCal5V,Integer,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+180,BoardTelemetry.hd_mezz_shunt_cal3_v3,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.HDMezz.{Afe}.ShuntCal3V3,Integer,N/A,HD mezzanine Protobuf API and cached INA232/TCA9536 driver,Slow Controls
+181,BoardTelemetry.optics_sfp_present,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.Present,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+182,BoardTelemetry.optics_sfp_loss_of_signal,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.LossOfSignal,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+183,BoardTelemetry.optics_sfp_tx_fault,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.TxFault,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+184,BoardTelemetry.optics_sfp_tx_disabled,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.TxDisabled,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+185,BoardTelemetry.optics_sfp_rate_select,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.RateSelect,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+186,BoardTelemetry.optics_sfp_vendor_name,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.VendorName,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+187,BoardTelemetry.optics_sfp_vendor_oui,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.VendorOui,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+188,BoardTelemetry.optics_sfp_part_number,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.PartNumber,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+189,BoardTelemetry.optics_sfp_revision,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.Revision,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+190,BoardTelemetry.optics_sfp_serial_number,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.SerialNumber,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+191,BoardTelemetry.optics_sfp_date_code,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.DateCode,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+192,BoardTelemetry.optics_sfp_nominal_bit_rate_mbps,Active,SfpIntegerReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.NominalBitRateMbps,Integer,Mbit/s,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+193,BoardTelemetry.optics_sfp_wavelength_nm,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.WavelengthNm,Double,nm,SFF-8472 plus EDMS 2580777 endpoint SFP specification,Slow Controls
+194,BoardTelemetry.optics_sfp_temperature_celsius,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.TemperatureCelsius,Double,°C,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+195,BoardTelemetry.optics_sfp_supply_voltage,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.SupplyVoltage,Double,V,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+196,BoardTelemetry.optics_sfp_tx_bias_current,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.TxBiasCurrent,Double,mA,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+197,BoardTelemetry.optics_sfp_tx_optical_power,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.TxOpticalPower,Double,mW,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+198,BoardTelemetry.optics_sfp_rx_optical_power,Active,SfpDoubleReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.RxOpticalPower,Double,mW,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+199,BoardTelemetry.optics_sfp_alarm_flags,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.AlarmFlags,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+200,BoardTelemetry.optics_sfp_warning_flags,Active,SfpStringReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.WarningFlags,String,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+201,BoardTelemetry.optics_sfp_dom_supported,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.DomSupported,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+202,BoardTelemetry.optics_sfp_eeprom_readable,Active,SfpBooleanReading,Yes,sfp,DAPHNE.Boards.{BoardId}.Optics.SFP.{Sfp}.EepromReadable,Boolean,N/A,SFP GPIO/I2C expander 0x72 and SFF-8472,Slow Controls
+203,BoardTelemetry.thermal_fans_present,Active,FanBooleanReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.Present,Boolean,N/A,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+204,BoardTelemetry.thermal_fans_pwm_command,Active,FanIntegerReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.PwmCommand,Integer,count,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+205,BoardTelemetry.thermal_fans_tachometer_raw,Active,FanIntegerReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.TachometerRaw,Integer,count,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+206,BoardTelemetry.thermal_fans_speed_rpm,Active,FanDoubleReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.SpeedRpm,Double,rpm,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+207,BoardTelemetry.thermal_fans_running,Active,FanBooleanReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.Running,Boolean,N/A,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+208,BoardTelemetry.thermal_fans_stalled,Active,FanBooleanReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.Stalled,Boolean,N/A,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+209,BoardTelemetry.thermal_fans_stall_count,Active,FanLongReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.StallCount,Long,count,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+210,BoardTelemetry.thermal_fans_control_mode,Active,FanStringReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.ControlMode,String,N/A,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+211,BoardTelemetry.thermal_fans_last_update,Active,FanDateTimeReading,Yes,fan,DAPHNE.Boards.{BoardId}.Thermal.Fans.{Fan}.LastUpdate,DateTime,N/A,FpgaRegDict fanControl/fanReadSpeed_0..1,Slow Controls
+212,BoardTelemetry.timing_clock_source_controlled,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.ClockSourceControlled,Boolean,N/A,endpointClockControl.CLOCK_SOURCE,DAQ / DTS
+213,BoardTelemetry.timing_mmcm0_locked,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.Mmcm0Locked,Boolean,N/A,ClockStatus.mmcm0_locked,DAQ / DTS
+214,BoardTelemetry.timing_mmcm1_locked,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.Mmcm1Locked,Boolean,N/A,ClockStatus.mmcm1_locked,DAQ / DTS
+215,BoardTelemetry.timing_endpoint_fsm_state,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Timing.EndpointFsmState,String,N/A,endpointStatus.FSM_STATUS,DAQ / DTS
+216,BoardTelemetry.timing_endpoint_fsm_raw,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.EndpointFsmRaw,Integer,N/A,endpointStatus.FSM_STATUS,DAQ / DTS
+217,BoardTelemetry.timing_timestamp_valid,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.TimestampValid,Boolean,N/A,endpointStatus.TIMESTAMP_OK,DAQ / DTS
+218,BoardTelemetry.timing_timing_usable,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.TimingUsable,Boolean,N/A,preflight readiness contract,DAQ / DTS
+219,BoardTelemetry.timing_raw_endpoint_status,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.RawEndpointStatus,Integer,N/A,ClockStatus.raw_endpoint_status,DAQ / DTS
+220,BoardTelemetry.timing_endpoint_address,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.EndpointAddress,Integer,N/A,endpointControl.ADDRESS,DAQ / DTS
+221,BoardTelemetry.timing_tx_enable_requested,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.TxEnableRequested,Boolean,N/A,timing endpoint contract,DAQ / DTS
+222,BoardTelemetry.timing_tx_disabled,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.TxDisabled,Boolean,N/A,timing endpoint output,DAQ / DTS
+223,BoardTelemetry.timing_loss_of_signal,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.LossOfSignal,Boolean,N/A,sfp_tmg_los,DAQ / DTS
+224,BoardTelemetry.timing_lock_loss_count,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Timing.LockLossCount,Long,N/A,required timing health block,DAQ / DTS
+225,BoardTelemetry.timing_auto_relock_count,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Timing.AutoRelockCount,Long,N/A,required timing health block,DAQ / DTS
+226,BoardTelemetry.timing_last_lock_loss_time,Active,DateTimeSample,No,,DAPHNE.Boards.{BoardId}.Timing.LastLockLossTime,DateTime,N/A,required timing health block,DAQ / DTS
+227,BoardTelemetry.timing_timestamp,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Timing.Timestamp,Long,N/A,timestamp0..3 register words,DAQ / DTS
+228,BoardTelemetry.timing_last_dts_command_id,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.LastDtsCommandId,Integer,N/A,timing/header integration contract,DAQ / DTS
+229,BoardTelemetry.timing_group_mask,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Timing.GroupMask,Long,N/A,versioned timing configuration,DAQ / DTS
+230,BoardTelemetry.timing_delay_trim,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.DelayTrim,Integer,N/A,versioned timing configuration,DAQ / DTS
+231,BoardTelemetry.timing_command_decoder_map,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Timing.CommandDecoderMap,String,N/A,EDMS 2395364 v2 control-bus registers 0x60..0x67,DAQ / DTS
+232,BoardTelemetry.timing_clock_phase_update_complete,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Timing.ClockPhaseUpdateComplete,Boolean,N/A,EDMS 2395364 v2 status register 0x71 bit 4,DAQ / DTS
+233,BoardTelemetry.timing_coarse_delay,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.CoarseDelay,Integer,N/A,EDMS 2395364 v2 deskew registers 0x72..0x73 bits 3..0,DAQ / DTS
+234,BoardTelemetry.timing_fine_phase,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Timing.FinePhase,Integer,N/A,EDMS 2395364 v2 deskew registers 0x72..0x73 bits 15..4,DAQ / DTS
+235,BoardTelemetry.timing_protocol_error_count,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Timing.ProtocolErrorCount,Long,N/A,EDMS 2395364 v2 err_cnt register 0x76,DAQ / DTS
+236,BoardTelemetry.timing_endpoint_version,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Timing.EndpointVersion,String,N/A,EDMS 2395364 v2 version registers 0x78..0x7b,DAQ / DTS
+237,BoardTelemetry.afe_global_power_state,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.PowerState,Boolean,N/A,afeGlobalControl.POWERSTATE,Slow Controls
+238,BoardTelemetry.afe_global_reset_asserted,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.ResetAsserted,Boolean,N/A,afeGlobalControl.RESET,DAQ
+239,BoardTelemetry.afe_global_busy_afe0,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.BusyAfe0,Boolean,N/A,afeGlobalControl.BUSY_AFE0,DAQ
+240,BoardTelemetry.afe_global_busy_afe12,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.BusyAfe12,Boolean,N/A,afeGlobalControl.BUSY_AFE12,DAQ
+241,BoardTelemetry.afe_global_busy_afe34,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.BusyAfe34,Boolean,N/A,afeGlobalControl.BUSY_AFE34,DAQ
+242,BoardTelemetry.afe_global_bias_enable,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.BiasEnable,Boolean,N/A,biasEnable.ENABLE,Slow Controls
+243,BoardTelemetry.afe_global_bias_control_code,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.AFE.Global.BiasControlCode,Integer,N/A,READ_VBIAS_CONTROL,DAQ
+244,BoardTelemetry.afe_blocks_attenuation,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.Attenuation,Integer,count,READ/WRITE AFE attenuation,DAQ
+245,BoardTelemetry.afe_blocks_v_gain,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.VGain,Integer,count,READ_AFE_VGAIN,DAQ
+246,BoardTelemetry.afe_blocks_bias_set_code,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasSetCode,Integer,count,READ_AFE_BIAS_SET,DAQ
+247,BoardTelemetry.afe_blocks_bias_voltage,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasVoltage,Double,V,GeneralInfo.v_bias_0..4 / bias monitor,DAQ
+248,BoardTelemetry.afe_blocks_bias_voltage_target,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasVoltageTarget,Double,V,cmd_writeAFEBiasControlledSet.target_bias_mv,DAQ
+249,BoardTelemetry.afe_blocks_bias_voltage_error,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasVoltageError,Double,mV,cmd_writeAFEBiasControlledSet_response.error_mv,DAQ
+250,BoardTelemetry.afe_blocks_bias_control_status,Active,AfeStringReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasControlStatus,String,N/A,AfeBiasControlStatus,DAQ
+251,BoardTelemetry.afe_blocks_bias_control_settled,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasControlSettled,Boolean,N/A,controlled-set response.settled,DAQ
+252,BoardTelemetry.afe_blocks_bias_control_iterations,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasControlIterations,Integer,count,controlled-set response.iterations,DAQ
+253,BoardTelemetry.afe_blocks_bias_voltage_slope,Active,AfeDoubleReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasVoltageSlope,Double,mV/s,controlled-set response.final_slope_mv_per_s,DAQ
+254,BoardTelemetry.afe_blocks_bias_stable_samples,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.BiasStableSamples,Integer,count,controlled-set response.stable_samples,DAQ
+255,BoardTelemetry.afe_blocks_adc_resolution,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.AdcResolution,Boolean,N/A,AFEConfig.adc.resolution,DAQ
+256,BoardTelemetry.afe_blocks_adc_output_format,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.AdcOutputFormat,Boolean,N/A,AFEConfig.adc.output_format,DAQ
+257,BoardTelemetry.afe_blocks_adc_msb_first,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.AdcMsbFirst,Boolean,N/A,AFEConfig.adc.sb_first,DAQ
+258,BoardTelemetry.afe_blocks_pga_lpf_cut_frequency,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.PgaLpfCutFrequency,Integer,count,AFEConfig.pga.lpf_cut_frequency,DAQ
+259,BoardTelemetry.afe_blocks_pga_integrator_disabled,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.PgaIntegratorDisabled,Boolean,N/A,AFEConfig.pga.integrator_disable,DAQ
+260,BoardTelemetry.afe_blocks_pga_gain,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.PgaGain,Boolean,N/A,AFEConfig.pga.gain,DAQ
+261,BoardTelemetry.afe_blocks_lna_clamp,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.LnaClamp,Integer,count,AFEConfig.lna.clamp,DAQ
+262,BoardTelemetry.afe_blocks_lna_gain,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.LnaGain,Integer,count,AFEConfig.lna.gain,DAQ
+263,BoardTelemetry.afe_blocks_lna_integrator_disabled,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.LnaIntegratorDisabled,Boolean,N/A,AFEConfig.lna.integrator_disable,DAQ
+264,BoardTelemetry.afe_blocks_alignment_delay,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.AlignmentDelay,Integer,tap,cmd_alignAFEs_response.delay,DAQ
+265,BoardTelemetry.afe_blocks_alignment_bitslip,Active,AfeIntegerReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.AlignmentBitslip,Integer,count,cmd_alignAFEs_response.bitslip,DAQ
+266,BoardTelemetry.afe_blocks_aligned,Active,AfeBooleanReading,Yes,afe,DAPHNE.Boards.{BoardId}.AFE.Blocks.{Afe}.Aligned,Boolean,N/A,frontend alignment status contract,DAQ
+267,BoardTelemetry.channels_trim,Active,ChannelIntegerReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.Trim,Integer,count,READ_TRIM_*,DAQ
+268,BoardTelemetry.channels_offset,Active,ChannelIntegerReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.Offset,Integer,count,READ_OFFSET_*,DAQ
+269,BoardTelemetry.channels_gain,Active,ChannelIntegerReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.Gain,Integer,count,ChannelConfig.gain + readback contract,DAQ
+270,BoardTelemetry.channels_current_monitor_raw,Active,ChannelIntegerReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.CurrentMonitorRaw,Integer,count,READ_CURRENT_MONITOR,DAQ
+271,BoardTelemetry.channels_current,Active,ChannelDoubleReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.Current,Double,A,current monitor + calibration,DAQ
+272,BoardTelemetry.channels_trigger_enabled,Active,ChannelBooleanReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerEnabled,Boolean,N/A,triggerEnableLow/High,DAQ
+273,BoardTelemetry.channels_full_stream_enabled,Active,ChannelBooleanReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.FullStreamEnabled,Boolean,N/A,ConfigureRequest.full_stream_channels,DAQ
+274,BoardTelemetry.channels_trigger_threshold,Active,ChannelIntegerReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerThreshold,Integer,count,TriggerChannelSnapshot.threshold,DAQ
+275,BoardTelemetry.channels_trigger_record_count,Active,ChannelLongReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerRecordCount,Long,count,TriggerChannelSnapshot.record_count,DAQ
+276,BoardTelemetry.channels_trigger_busy_count,Active,ChannelLongReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerBusyCount,Long,count,TriggerChannelSnapshot.busy_count,DAQ
+277,BoardTelemetry.channels_trigger_full_count,Active,ChannelLongReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerFullCount,Long,count,TriggerChannelSnapshot.full_count,DAQ
+278,BoardTelemetry.channels_trigger_rate,Active,ChannelDoubleReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.TriggerRate,Double,Hz,delta(record_count)/delta(time),DAQ
+279,BoardTelemetry.channels_busy_fraction,Active,ChannelDoubleReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.BusyFraction,Double,%,delta(busy)/defined opportunity denominator,DAQ
+280,BoardTelemetry.channels_packet_count,Active,ChannelLongReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.PacketCount,Long,count,ChannelInfo.total_packets,DAQ
+281,BoardTelemetry.channels_packet_rate,Active,ChannelDoubleReading,Yes,channel,DAPHNE.Boards.{BoardId}.Channels.{Channel}.PacketRate,Double,Hz,ChannelInfo.new_packets / interval,DAQ
+282,BoardTelemetry.configuration_active_self_trigger_threshold,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.SelfTriggerThreshold,Long,N/A,ConfigureRequest.self_trigger_threshold,DAQ
+283,BoardTelemetry.configuration_active_self_trigger_xcorr,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.SelfTriggerXcorr,Long,N/A,ConfigureRequest.self_trigger_xcorr,DAQ
+284,BoardTelemetry.configuration_active_trigger_primitive_config,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.TriggerPrimitiveConfig,Long,N/A,ConfigureRequest.tp_conf,DAQ
+285,BoardTelemetry.configuration_active_compensator_mask,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.CompensatorMask,Long,N/A,ConfigureRequest.compensator,DAQ
+286,BoardTelemetry.configuration_active_inverter_mask,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.InverterMask,Long,N/A,ConfigureRequest.inverters,DAQ
+287,BoardTelemetry.configuration_active_full_stream_channel_list,Active,StringSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.FullStreamChannelList,String,N/A,ConfigureRequest.full_stream_channels,DAQ
+288,BoardTelemetry.configuration_active_slot,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.Slot,Integer,N/A,ConfigureRequest.slot,DAQ
+289,BoardTelemetry.configuration_active_request_timeout_ms,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.RequestTimeoutMs,Integer,N/A,ConfigureRequest.timeout_ms,DAQ
+290,BoardTelemetry.configuration_active_bias_control,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.BiasControl,Integer,N/A,ConfigureRequest.biasctrl,DAQ
+291,BoardTelemetry.configuration_active_self_trigger_config_raw,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.SelfTriggerConfigRaw,Integer,N/A,stuffregs.OFF_ST_CONFIG,DAQ
+292,BoardTelemetry.configuration_active_self_trigger_delay_raw,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.SelfTriggerDelayRaw,Integer,N/A,stuffregs.OFF_ST_DELAY,DAQ
+293,BoardTelemetry.configuration_active_self_trigger_filter_output_select,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Configuration.Active.SelfTriggerFilterOutputSelect,Integer,N/A,stuffregs.OFF_ST_FILTER_OUTPUT_SEL,DAQ
+294,BoardTelemetry.spy_trigger_source_selector,Active,IntegerSample,No,,DAPHNE.Boards.{BoardId}.Spy.Trigger.SourceSelector,Integer,N/A,daphne-firmware working tree: spy_trigger_ctrl_reg[1:0] at 0x88000034,DAQ
+295,BoardTelemetry.spy_trigger_inhibit,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Spy.Trigger.Inhibit,Boolean,N/A,daphne-firmware working tree: spy_trigger_ctrl_reg[2] at 0x88000034,DAQ
+296,BoardTelemetry.readout_stream_total_packets,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.TotalPackets,Long,count,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+297,BoardTelemetry.readout_stream_new_packets,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.NewPackets,Long,count,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+298,BoardTelemetry.readout_stream_total_dropped_packets,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.TotalDroppedPackets,Long,count,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+299,BoardTelemetry.readout_stream_new_dropped_packets,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.NewDroppedPackets,Long,count,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+300,BoardTelemetry.readout_stream_packet_rate,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.PacketRate,Double,Hz,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+301,BoardTelemetry.readout_stream_drop_rate,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.DropRate,Double,Hz,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+302,BoardTelemetry.readout_stream_drop_fraction,Active,DoubleSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.DropFraction,Double,%,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+303,BoardTelemetry.readout_stream_throttling_active,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.ThrottlingActive,Boolean,N/A,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+304,BoardTelemetry.readout_stream_throttle_event_count,Active,LongSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.ThrottleEventCount,Long,count,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+305,BoardTelemetry.readout_stream_data_path_stale,Active,BooleanSample,No,,DAPHNE.Boards.{BoardId}.Readout.Stream.DataPathStale,Boolean,N/A,InfoResponse.StreamInfo plus required gateware/Hermes health,DAQ
+306,BoardTelemetry.readout_links_provisioned,Active,DataLinkBooleanReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.Provisioned,Boolean,N/A,Hermes/10GbE gateware health contract,DAQ
+307,BoardTelemetry.readout_links_enabled,Active,DataLinkBooleanReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.Enabled,Boolean,N/A,Hermes/10GbE gateware health contract,DAQ
+308,BoardTelemetry.readout_links_link_ready,Active,DataLinkBooleanReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.LinkReady,Boolean,N/A,Hermes/10GbE gateware health contract,DAQ
+309,BoardTelemetry.readout_links_local_fault,Active,DataLinkBooleanReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.LocalFault,Boolean,N/A,Hermes/10GbE gateware health contract,DAQ
+310,BoardTelemetry.readout_links_remote_fault,Active,DataLinkBooleanReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.RemoteFault,Boolean,N/A,Hermes/10GbE gateware health contract,DAQ
+311,BoardTelemetry.readout_links_tx_packet_count,Active,DataLinkLongReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.TxPacketCount,Long,N/A,Hermes/10GbE gateware health contract,DAQ
+312,BoardTelemetry.readout_links_tx_byte_count,Active,DataLinkLongReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.TxByteCount,Long,byte,Hermes/10GbE gateware health contract,DAQ
+313,BoardTelemetry.readout_links_error_count,Active,DataLinkLongReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.ErrorCount,Long,N/A,Hermes/10GbE gateware health contract,DAQ
+314,BoardTelemetry.readout_links_destination_ip,Active,DataLinkStringReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.DestinationIp,String,N/A,Hermes/10GbE gateware health contract,DAQ
+315,BoardTelemetry.readout_links_destination_port,Active,DataLinkIntegerReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.DestinationPort,Integer,N/A,Hermes/10GbE gateware health contract,DAQ
+316,BoardTelemetry.readout_links_mtu_bytes,Active,DataLinkIntegerReading,Yes,data_link,DAPHNE.Boards.{BoardId}.Readout.Links.{DataLink}.MtuBytes,Integer,byte,Hermes/10GbE gateware health contract,DAQ
